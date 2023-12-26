@@ -6,10 +6,6 @@ import {
     setSystemVersion,
     setLanguage
 } from '@/utils/author'
-import {
-    getSysInfo,
-    getVersion
-} from "@api/system"
 import {hasLanguage, getCurrentLanguage} from '@/utils/tool'
 import {changeFavicon} from '@/utils/tool'
 import ThemeManager from '@js/themeManager'
