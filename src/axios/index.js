@@ -8,9 +8,11 @@ import {
 import router from '../router/index.js'
 import { cgsMessage } from 'cgs-design'
 
+debugger
+console.log( import.meta.env) 
 // 创建 axios 实例
 export const requests = axios.create({
-  baseURL: import.meta.env.VUE_APP_HN_BASEURL,
+  baseURL: import.meta.env.VITE_APP_REQUEST_BASEURL,
   timeout: 60000, // 请求超时时间
   // withCredentials: true
 })

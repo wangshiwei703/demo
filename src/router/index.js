@@ -14,12 +14,11 @@ const routes = [
       requiresAuth: true,
       keepAlive: true
     }
-
   }
 ]
-
+const _base = import.meta.env.VITE_APP_BASE
 let router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(_base),
   routes
 })
 export default router

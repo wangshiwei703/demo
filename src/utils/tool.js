@@ -22,7 +22,7 @@ export const hasLanguage = () => {
 export const getCurrentLanguage = () => {
     let _lang = getLanguage()
     if (!_lang) {
-        _lang = import.meta.env.VUE_APP_LANG
+        _lang = import.meta.env.VITE_APP_LANG
     }
     return _lang
 }
