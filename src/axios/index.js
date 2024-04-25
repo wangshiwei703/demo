@@ -8,7 +8,6 @@ import {
 import router from '../router/index.js'
 import { cgsMessage } from 'cgs-design'
 
-debugger
 console.log( import.meta.env) 
 // 创建 axios 实例
 export const requests = axios.create({
