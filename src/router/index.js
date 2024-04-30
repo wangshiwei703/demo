@@ -14,6 +14,15 @@ const routes = [
       requiresAuth: true,
       keepAlive: true
     }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
   }
 ]
 const _base = import.meta.env.VITE_APP_BASE

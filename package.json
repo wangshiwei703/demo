@@ -17,6 +17,7 @@
     "axios": "^1.6.2",
     "cgs-design": "^0.1.97",
     "js-cookie": "^3.0.5",
+    "qs": "^6.12.1",
     "vue": "^3.3.11"
   },
   "devDependencies": {
