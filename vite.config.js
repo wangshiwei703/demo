@@ -29,15 +29,6 @@ export default defineConfig((mode, command) => {
         '/file/': {
           target: 'http://10.7.0.15:46786/',
         },
-        '/Upload': {
-          target: remote,
-        },
-        '/3d': {
-          target: 'http://mapchang.com/',
-          pathRewrite: {
-            // '^/3d': ''
-          }
-        }
       }
     },
     resolve: {

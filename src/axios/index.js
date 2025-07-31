@@ -6,7 +6,6 @@ import {
   clearUserMessage
 } from '@/utils/author'
 import router from '../router/index.js'
-import { cgsMessage } from 'cgs-design'
 
 console.log( import.meta.env) 
 // 创建 axios 实例
@@ -22,7 +21,7 @@ const err = (error) => {
     if (error.response.status === 403) {
       // clearLocalMessage()
       if (error.response.data.code === 110302) {
-        cgsMessage.error("租户过期")
+        console.log("租户过期")
       }
     }
     if (error.response.status === 401) {

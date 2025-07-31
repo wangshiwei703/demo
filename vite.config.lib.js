@@ -21,12 +21,11 @@ export default defineConfig({
     },
     rollupOptions: {
       //忽略打包vue文件
-      external: ["vue", "cgs-design"],
+      external: ["vue"],
       //input: ["index.ts"],
       output: {
         globals: {
           vue: "Vue",
-          "cgs-design": "cgsDesign",
           // "echarts": "echarts"
         },
         dir: "dist",
