@@ -34,7 +34,6 @@ export default defineConfig((mode, command) => {
     },
     resolve: {
       alias: {
-        'vue': 'vue/dist/vue.esm-browser.js',
         "@": join(__dirname, 'src'),
         "@style": join(__dirname, 'src/assets/style'),
         "@image": join(__dirname, 'src/assets/image'),
