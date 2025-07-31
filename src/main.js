@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import '@style/css/index.css'
 import "./axios"
-import './init'
+// import './init'
 import router from './router'
 // import './router/permission.js'
 // import '@style/css/font.css'

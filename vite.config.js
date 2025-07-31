@@ -4,7 +4,8 @@ import {
 } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import {
-  join
+  join,
+  resolve
 } from 'path'
 
 // const remote = 'http://10.7.0.15:52577/'
@@ -16,6 +17,11 @@ export default defineConfig((mode, command) => {
   return {
     base: env.VITE_APP_BASE,
     plugins: [vue()],
+    resolve: {
+      alias: {
+        'vue': 'vue/dist/vue.esm-browser.js'
+      }
+    },
     server: {
       port: 10082,
       proxy: {
