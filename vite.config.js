@@ -7,7 +7,7 @@ import {
   join
 } from 'path'
 
-const remote = 'http://10.7.0.15:52577/'
+// const remote = 'http://10.7.0.15:52577/'
 
 // https://vitejs.dev/config/
 export default defineConfig((mode, command) => {
@@ -19,16 +19,16 @@ export default defineConfig((mode, command) => {
     server: {
       port: 10082,
       proxy: {
-        '/api': {
-          target: remote,
-          ws: true,
-          pathRewrite: {
-            // '^/api': '/'
-          }
-        },
-        '/file/': {
-          target: 'http://10.7.0.15:46786/',
-        },
+        // '/api': {
+        //   target: remote,
+        //   ws: true,
+        //   pathRewrite: {
+        //     // '^/api': '/'
+        //   }
+        // },
+        // '/file/': {
+        //   target: 'http://10.7.0.15:46786/',
+        // },
       }
     },
     resolve: {
