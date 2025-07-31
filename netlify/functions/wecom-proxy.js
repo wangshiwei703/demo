@@ -8,8 +8,6 @@ const agentSecrets = {
 };
 
 exports.handler = async (event) => {
-  debugger
-  console.log(event);
   
   try {
     const body = JSON.parse(event.body);

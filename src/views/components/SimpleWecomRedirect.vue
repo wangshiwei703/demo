@@ -24,19 +24,19 @@ const wecomAccounts = [
   {
     id: 'wecom_001',
     redirectUrl: 'weixin://dl/business/?t=xxxxxx', // 企业微信添加链接1
-    agentId: '1000008',
+    agentId: 'agent1_id',
     userId: '18339702670'
   },
   {
     id: 'wecom_002',
     redirectUrl: 'weixin://dl/business/?t=yyyyyy', // 企业微信添加链接2
-    agentId: '1000008',
+    agentId: 'agent2_id',
     userId: '18339702670'
   },
   {
     id: 'wecom_003',
     redirectUrl: 'weixin://dl/business/?t=zzzzzz', // 企业微信添加链接3
-    agentId: '1000008',
+    agentId: 'agent3_id',
     userId: '18339702670'
   }
 ];
