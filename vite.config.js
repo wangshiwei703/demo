@@ -17,11 +17,6 @@ export default defineConfig((mode, command) => {
   return {
     base: env.VITE_APP_BASE,
     plugins: [vue()],
-    resolve: {
-      alias: {
-        'vue': 'vue/dist/vue.esm-browser.js'
-      }
-    },
     server: {
       port: 10082,
       proxy: {
@@ -39,6 +34,7 @@ export default defineConfig((mode, command) => {
     },
     resolve: {
       alias: {
+        'vue': 'vue/dist/vue.esm-browser.js',
         "@": join(__dirname, 'src'),
         "@style": join(__dirname, 'src/assets/style'),
         "@image": join(__dirname, 'src/assets/image'),
