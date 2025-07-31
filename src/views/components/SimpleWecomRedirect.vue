@@ -23,19 +23,19 @@ import axios from 'axios';
 const wecomAccounts = [
   {
     id: 'wecom_001',
-    redirectUrl: 'weixin://dl/business/?t=xxxxxx', // 企业微信添加链接1
+    redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接1
     agentId: 'agent1_id',
     userId: '18339702670'
   },
   {
     id: 'wecom_002',
-    redirectUrl: 'weixin://dl/business/?t=yyyyyy', // 企业微信添加链接2
+    redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接2
     agentId: 'agent2_id',
     userId: '18339702670'
   },
   {
     id: 'wecom_003',
-    redirectUrl: 'weixin://dl/business/?t=zzzzzz', // 企业微信添加链接3
+    redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接3
     agentId: 'agent3_id',
     userId: '18339702670'
   }
