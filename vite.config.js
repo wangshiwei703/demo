@@ -30,6 +30,11 @@ export default defineConfig((mode, command) => {
         // '/file/': {
         //   target: 'http://10.7.0.15:46786/',
         // },
+        // 代理企业微信API请求
+        '/.netlify/functions/wecom-proxy': {
+          target: 'http://localhost:8888', // Netlify dev服务器地址
+          changeOrigin: true
+        }
       }
     },
     resolve: {

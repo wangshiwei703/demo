@@ -2,11 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import '@style/css/index.css'
-import "./axios"
-// import './init'
+// import "./axios"
+
 import router from './router'
-// import './router/permission.js'
-// import '@style/css/font.css'
+
+
 import Plugins from "@/plugins"
 
 import '@/assets/icon/iconfont.js'
