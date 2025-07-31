@@ -4,6 +4,7 @@
 <template>
   <div class="vite-vue3-template-root">
       小伙子2133123
+      <button>测试按钮</button>
   </div>
 </template>
 
