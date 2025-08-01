@@ -2,7 +2,7 @@ const axios = require('axios');
 
 // 企业微信应用密钥配置
 const agentSecrets = {
-  '1000008': '你的agent1_secret',
+  '1000008': 'Fcj8TvrosqH76AhxhJBtkKsdOgGYJYQx0jbeJRHvSm0',
   'agent2_id': '你的agent2_secret',
   'agent3_id': '你的agent3_secret'
 };
