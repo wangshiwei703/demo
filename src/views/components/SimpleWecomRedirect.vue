@@ -24,21 +24,21 @@ const wecomAccounts = [
   {
     id: 'wecom_001',
     redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接1
-    agentId: 'agent1_id',
+    agentId: '1000008', // text应用
     userId: '18339702670'
   },
-  {
-    id: 'wecom_002',
-    redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接2
-    agentId: 'agent2_id',
-    userId: '18339702670'
-  },
-  {
-    id: 'wecom_003',
-    redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接3
-    agentId: 'agent3_id',
-    userId: '18339702670'
-  }
+  // {
+  //   id: 'wecom_002',
+  //   redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接2
+  //   agentId: 'agent2_id',
+  //   userId: '18339702670'
+  // },
+  // {
+  //   id: 'wecom_003',
+  //   redirectUrl: 'https://work.weixin.qq.com/ca/cawcdeb8aa5ccdc1fe', // 企业微信添加链接3
+  //   agentId: 'agent3_id',
+  //   userId: '18339702670'
+  // }
 ];
 
 // 状态管理
@@ -137,15 +137,15 @@ const checkWecomStatus = async () => {
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
   // window.tiktokPixel
-  // if (window.ttp) {
-  //   window.ttp.track('CompleteRegistration', {
-  //     content_name: '企业微信添加成功',
-  //     content_id: selectedWecom.value.id,
-  //     content_type: 'wecom',
-  //     value: 1
-  //   });
+  if (window.ttq) {
+    window.ttq.track('CompleteRegistration', {
+      content_name: '企业微信添加成功',
+      content_id: selectedWecom.value.id,
+      content_type: 'wecom',
+      value: 1
+    });
     console.log('TikTok Pixel转化事件已触发');
-  // }
+  }
 };
 </script>
 
