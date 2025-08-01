@@ -6,8 +6,8 @@ import '@style/css/index.css'
 
 import router from './router'
 
-
-import Plugins from "@/plugins"
+//  加载ws
+// import Plugins from "@/plugins"
 
 
 // // 初始化TikTok Pixel
@@ -31,5 +31,5 @@ import Plugins from "@/plugins"
 
 const app = createApp(App)
 app.use(router)
-app.use(Plugins)
+// app.use(Plugins)
 app.mount('#app')
