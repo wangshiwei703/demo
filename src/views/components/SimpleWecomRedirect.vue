@@ -62,6 +62,10 @@ const handleAddWecom = () => {
   
   // 随机选择一个企业微信账号
   selectRandomWecom();
+
+  
+  // 测试
+  triggerTikTokConversion()
   
   // 延迟跳转，显示状态提示
   setTimeout(() => {
