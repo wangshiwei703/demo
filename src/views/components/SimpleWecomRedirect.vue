@@ -66,25 +66,25 @@ const handleAddWecom = () => {
   triggerTikTokConversion()
 
   // 延迟跳转，显示状态提示
-  // setTimeout(() => {
-  //   if (selectedWecom.value) {
-  //     // 跳转到企业微信添加页面
-  //     // window.location.href = selectedWecom.value.redirectUrl;
-  //     // 打开新页面
-  //     window.open(selectedWecom.value.redirectUrl, '_blank');
+  setTimeout(() => {
+    if (selectedWecom.value) {
+      // 跳转到企业微信添加页面
+      // window.location.href = selectedWecom.value.redirectUrl;
+      // 打开新页面
+      window.open(selectedWecom.value.redirectUrl, '_blank');
       
-  //     // 显示提示信息
-  //     statusMessage.value = '已跳转至企业微信，请完成添加...';
-  //     statusType.value = 'info';
+      // 显示提示信息
+      statusMessage.value = '已跳转至企业微信，请完成添加...';
+      statusType.value = 'info';
       
-  //     // 开始定期检查添加状态（5分钟内，每30秒检查一次）
-  //     startCheckingStatus();
-  //   } else {
-  //     isProcessing.value = false;
-  //     statusMessage.value = '获取企业微信信息失败，请重试';
-  //     statusType.value = 'error';
-  //   }
-  // }, 1000);
+      // 开始定期检查添加状态（5分钟内，每30秒检查一次）
+      startCheckingStatus();
+    } else {
+      isProcessing.value = false;
+      statusMessage.value = '获取企业微信信息失败，请重试';
+      statusType.value = 'error';
+    }
+  }, 1000);
 };
 
 // 开始检查添加状态
@@ -111,7 +111,7 @@ const startCheckingStatus = () => {
 // 检查企业微信添加状态（通过代理）
 const checkWecomStatus = async () => {
   try {
-    const response = await axios.post('/.netlify/functions/wecom-proxy3', {
+    const response = await axios.post('/.netlify/functions/wecom-proxy', {
       corpId: 'ww60fc23426549ae2b',
       agentId: selectedWecom.value.agentId,
       userId: selectedWecom.value.userId,
