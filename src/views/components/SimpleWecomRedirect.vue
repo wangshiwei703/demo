@@ -111,7 +111,7 @@ const startCheckingStatus = () => {
 // 检查企业微信添加状态（通过代理）
 const checkWecomStatus = async () => {
   try {
-    const response = await axios.post('/.netlify/functions/wecom-proxy', {
+    const response = await axios.post('/.netlify/functions/wecom-proxy3', {
       corpId: 'ww60fc23426549ae2b',
       agentId: selectedWecom.value.agentId,
       userId: selectedWecom.value.userId,
@@ -120,21 +120,23 @@ const checkWecomStatus = async () => {
     
     const result = response.data;
     
-    if (result.added) {
-      // 验证成功，触发TikTok转化
-      triggerTikTokConversion();
-      statusMessage.value = '恭喜，已成功添加企业微信！';
-      statusType.value = 'success';
-      clearInterval(checkInterval.value);
-      isProcessing.value = false;
-    } else {
-      statusMessage.value = '尚未检测到添加记录，若已添加请稍候...';
-      statusType.value = 'info';
-    }
+    // if (result.added) {
+    //   // 验证成功，触发TikTok转化
+    //   triggerTikTokConversion();
+    //   statusMessage.value = '恭喜，已成功添加企业微信！';
+    //   statusType.value = 'success';
+    //   clearInterval(checkInterval.value);
+    //   isProcessing.value = false;
+    // } else {
+    //   statusMessage.value = '尚未检测到添加记录，若已添加请稍候...';
+    //   statusType.value = 'info';
+    // }
   } catch (error) {
     console.error('检查添加状态失败:', error);
     statusMessage.value = '检查状态失败，请稍候重试';
     statusType.value = 'error';
+    // statusMessage.value = '尚未检测到添加记录，若已添加请稍候...';
+    // statusType.value = 'info';
   }
 };
 

@@ -7,41 +7,43 @@ const agentSecrets = {
   'agent3_id': '你的agent3_secret'
 };
 
-const accessToken = process.env.TIKTOK_ACCESS_TOKEN;
-const pixelId = 'D268FFJC77UAP1JBRVP0';
+
 
 const checkInterval = null
 
 exports.handler = async (event) => {
+
+sendTikTokServerEvent()
+
   // 直接开始检查
-  await checkWecomStatus(event);
+  // await checkWecomStatus(event);
 
-  // 定时检查（每30秒一次）
-  checkInterval = setInterval(async () => {
-    const checkResult = await checkWecomStatus(event);
-    let result = checkResult.data
-    if (result.added) {
-      clearInterval(checkInterval);
-      return result
-    }else{
-      return result
-    }
-  }, 30000);
+  // // 定时检查（每30秒一次）
+  // checkInterval = setInterval(async () => {
+  //   const checkResult = await checkWecomStatus(event);
+  //   let result = checkResult.data
+  //   if (result.added) {
+  //     clearInterval(checkInterval);
+  //     return result
+  //   } else {
+  //     return result
+  //   }
+  // }, 30000);
 
-  // 5分钟后停止检查
-  setTimeout(() => {
-    clearInterval(checkInterval);
-    return {
-      statusCode: 400,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        error: '检查超时',
-      })
-    }
-  }, 300000);
+  // // 5分钟后停止检查
+  // setTimeout(() => {
+  //   clearInterval(checkInterval);
+  //   return {
+  //     statusCode: 400,
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       error: '检查超时',
+  //     })
+  //   }
+  // }, 300000);
 };
 
 async function checkWecomStatus(event) {
@@ -175,6 +177,8 @@ async function checkWecomStatus(event) {
 // 在云函数中添加发送TikTok服务器端事件的逻辑
 async function sendTikTokServerEvent(contact) {
   try {
+    const accessToken = '6eecc9c1084bfcf1106510252f8645542d48d9ff';
+    const pixelId = 'D268FFJC77UAP1JBRVP0';
     if (!accessToken || !pixelId) {
       throw new Error("缺少TikTok服务器端事件配置");
     }
