@@ -12,38 +12,35 @@ const agentSecrets = {
 const checkInterval = null
 
 exports.handler = async (event) => {
-
-sendTikTokServerEvent()
-
   // 直接开始检查
-  // await checkWecomStatus(event);
+  await checkWecomStatus(event);
 
-  // // 定时检查（每30秒一次）
-  // checkInterval = setInterval(async () => {
-  //   const checkResult = await checkWecomStatus(event);
-  //   let result = checkResult.data
-  //   if (result.added) {
-  //     clearInterval(checkInterval);
-  //     return result
-  //   } else {
-  //     return result
-  //   }
-  // }, 30000);
+  // 定时检查（每30秒一次）
+  checkInterval = setInterval(async () => {
+    const checkResult = await checkWecomStatus(event);
+    let result = checkResult.data
+    if (result.added) {
+      clearInterval(checkInterval);
+      return result
+    } else {
+      return result
+    }
+  }, 30000);
 
-  // // 5分钟后停止检查
-  // setTimeout(() => {
-  //   clearInterval(checkInterval);
-  //   return {
-  //     statusCode: 400,
-  //     headers: {
-  //       'Access-Control-Allow-Origin': '*',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       error: '检查超时',
-  //     })
-  //   }
-  // }, 300000);
+  // 5分钟后停止检查
+  setTimeout(() => {
+    clearInterval(checkInterval);
+    return {
+      statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        error: '检查超时',
+      })
+    }
+  }, 300000);
 };
 
 async function checkWecomStatus(event) {
@@ -175,14 +172,8 @@ async function checkWecomStatus(event) {
 
 
 // 在云函数中添加发送TikTok服务器端事件的逻辑
-async function sendTikTokServerEvent(contact1) {
+async function sendTikTokServerEvent(contact) {
   try {
-    let contact = {
-      externalUserId: 'cs',
-      phone: undefined,
-      ipAddress: "0.0.0.0",
-      name: 'cs'
-    }
     const accessToken = '6eecc9c1084bfcf1106510252f8645542d48d9ff';
     const pixelId = 'D268FFJC77UAP1JBRVP0';
     if (!accessToken || !pixelId) {
@@ -208,9 +199,9 @@ async function sendTikTokServerEvent(contact1) {
           properties: {
             content_name: "企业微信添加成功",
             content_type: "contact",
-            external_user_id: contact.externalUserId ? contact.externalUserId : 'cs',
+            external_user_id: contact.externalUserId,
             user_name: contact.name,
-            value: 1,
+            value: 0,
             currency: "CNY"
           }
         }
