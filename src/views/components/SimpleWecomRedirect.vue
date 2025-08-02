@@ -146,7 +146,8 @@ const triggerTikTokConversion = () => {
       content_name: '企业微信添加成功',
       content_id: selectedWecom.value.id,
       content_type: 'wecom',
-      value: 1
+      value: 1,
+      currency: 1
     });
     console.log('TikTok Pixel转化事件已触发');
   }

@@ -48,13 +48,14 @@ async function sendTikTokServerEvent(contact) {
             content_type: "contact",
             external_user_id: contact.externalUserId,
             user_name: contact.name,
-            value: 0,
+            value: 1,
             currency: "CNY"
           }
         }
       ]
     };
-
+    console.log(eventData);
+    
     // 发送请求到TikTok服务器端事件API
     const response = await axios.post(
       `https://business-api.tiktok.com/open_api/v1.3/pixel/track/`,
