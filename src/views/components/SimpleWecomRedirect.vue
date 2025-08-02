@@ -69,7 +69,9 @@ const handleAddWecom = () => {
   // setTimeout(() => {
   //   if (selectedWecom.value) {
   //     // 跳转到企业微信添加页面
-  //     window.location.href = selectedWecom.value.redirectUrl;
+  //     // window.location.href = selectedWecom.value.redirectUrl;
+  //     // 打开新页面
+  //     window.open(selectedWecom.value.redirectUrl, '_blank');
       
   //     // 显示提示信息
   //     statusMessage.value = '已跳转至企业微信，请完成添加...';
@@ -120,8 +122,7 @@ const checkWecomStatus = async () => {
     
     if (result.added) {
       // 验证成功，触发TikTok转化
-      // 转至后台
-      // triggerTikTokConversion();
+      triggerTikTokConversion();
       statusMessage.value = '恭喜，已成功添加企业微信！';
       statusType.value = 'success';
       clearInterval(checkInterval.value);

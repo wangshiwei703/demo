@@ -8,30 +8,6 @@ const agentSecrets = {
 };
 
 exports.handler = async (event) => {
-
-  checkWecomStatus();
-  
-  // 定时检查（每30秒一次）
-  checkInterval.value = setInterval(() => {
-    checkWecomStatus();
-  }, 30000);
-  
-  // 5分钟后停止检查
-  setTimeout(() => {
-    clearInterval(checkInterval.value);
-    return {
-      statusCode: 400,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 
-          error: '检查超时',
-        })
-    }
-  }, 300000);
-
-
   try {
     const body = JSON.parse(event.body);
     
@@ -118,11 +94,6 @@ exports.handler = async (event) => {
         // 验证是否在最近5分钟内添加
         if (addTime >= fiveMinutesAgo) {
           hasRecentContact = true;
-          // 在检查到新联系人时调用
-
-          // （添加到之前的云函数中，当获取到newContacts时）
-          await sendTikTokServerEvent(contact);
-
           break; // 找到符合条件的联系人，跳出循环
         }
       }
@@ -159,66 +130,4 @@ exports.handler = async (event) => {
 };
 
 
-
-// 在云函数中添加发送TikTok服务器端事件的逻辑
-async function sendTikTokServerEvent(contact) {
-  try {
-    const accessToken = process.env.TIKTOK_ACCESS_TOKEN;
-    const pixelId = process.env.TIKTOK_PIXEL_ID;
-    
-    if (!accessToken || !pixelId) {
-      throw new Error("缺少TikTok服务器端事件配置");
-    }
-
-    // 构造事件数据（需符合TikTok服务器端事件格式）
-    const eventData = {
-      events: [
-        {
-          event: "CompleteRegistration", // 事件名称（与前端一致）
-          event_time: Math.floor(Date.now() / 1000), // 事件时间（秒级时间戳）
-          user: {
-            // 尽可能提供用户标识（提高事件匹配率）
-            external_id: contact.externalUserId, // 企业微信外部联系人ID
-            phone_number: contact.phone ? contact.phone : undefined // 如有手机号可添加
-          },
-          context: {
-            // 可选：补充用户环境信息（提高事件质量）
-            user_agent: "Netlify Function/1.0",
-            ip_address: contact.ipAddress || "0.0.0.0" // 如有用户IP可添加
-          },
-          properties: {
-            content_name: "企业微信添加成功",
-            content_type: "contact",
-            external_user_id: contact.externalUserId,
-            user_name: contact.name,
-            value: 0,
-            currency: "CNY"
-          }
-        }
-      ]
-    };
-
-    // 发送请求到TikTok服务器端事件API
-    const response = await axios.post(
-      `https://business-api.tiktok.com/open_api/v1.3/pixel/track/`,
-      eventData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Token": accessToken
-        }
-      }
-    );
-
-    if (response.data.code !== 0) {
-      throw new Error(`TikTok事件发送失败: ${JSON.stringify(response.data)}`);
-    }
-
-    console.log(`TikTok事件发送成功: ${contact.externalUserId}`);
-    return true;
-  } catch (error) {
-    console.error("发送TikTok服务器端事件错误:", error);
-    return false;
-  }
-}
 
