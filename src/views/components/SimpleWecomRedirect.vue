@@ -65,6 +65,10 @@ const handleAddWecom = () => {
   // 验证成功，触发TikTok转化测试
   triggerTikTokConversion()
 
+  // 打开新页面
+  window.open(selectedWecom.value.redirectUrl, '_blank');
+
+
   // // 延迟跳转，显示状态提示
   // setTimeout(() => {
   //   if (selectedWecom.value) {
