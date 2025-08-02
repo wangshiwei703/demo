@@ -62,33 +62,27 @@ const handleAddWecom = () => {
   
   // 随机选择一个企业微信账号
   selectRandomWecom();
-  // 验证成功，触发TikTok转化测试
-  triggerTikTokConversion()
 
-  // 打开新页面
-  window.open(selectedWecom.value.redirectUrl, '_blank');
-
-
-  // // 延迟跳转，显示状态提示
-  // setTimeout(() => {
-  //   if (selectedWecom.value) {
-  //     // 跳转到企业微信添加页面
-  //     // window.location.href = selectedWecom.value.redirectUrl;
-  //     // 打开新页面
-  //     window.open(selectedWecom.value.redirectUrl, '_blank');
+  // 延迟跳转，显示状态提示
+  setTimeout(() => {
+    if (selectedWecom.value) {
+      // 跳转到企业微信添加页面
+      // window.location.href = selectedWecom.value.redirectUrl;
+      // 打开新页面
+      window.open(selectedWecom.value.redirectUrl, '_blank');
       
-  //     // 显示提示信息
-  //     statusMessage.value = '已跳转至企业微信，请完成添加...';
-  //     statusType.value = 'info';
+      // 显示提示信息
+      statusMessage.value = '已跳转至企业微信，请完成添加...';
+      statusType.value = 'info';
       
-  //     // 开始定期检查添加状态（5分钟内，每30秒检查一次）
-  //     startCheckingStatus();
-  //   } else {
-  //     isProcessing.value = false;
-  //     statusMessage.value = '获取企业微信信息失败，请重试';
-  //     statusType.value = 'error';
-  //   }
-  // }, 1000);
+      // 开始定期检查添加状态（5分钟内，每30秒检查一次）
+      startCheckingStatus();
+    } else {
+      isProcessing.value = false;
+      statusMessage.value = '获取企业微信信息失败，请重试';
+      statusType.value = 'error';
+    }
+  }, 1000);
 };
 
 // 开始检查添加状态
@@ -137,10 +131,8 @@ const checkWecomStatus = async () => {
     }
   } catch (error) {
     console.error('检查添加状态失败:', error);
-    statusMessage.value = '检查状态失败，请稍候重试';
-    statusType.value = 'error';
-    // statusMessage.value = '尚未检测到添加记录，若已添加请稍候...';
-    // statusType.value = 'info';
+    // statusMessage.value = '检查状态失败，请稍候重试';
+    // statusType.value = 'error';
   }
 };
 
