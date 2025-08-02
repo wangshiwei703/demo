@@ -191,7 +191,7 @@ async function sendTikTokServerEvent(contact) {
           event_time: Math.floor(Date.now() / 1000), // 事件时间（秒级时间戳）
           user: {
             // 尽可能提供用户标识（提高事件匹配率）
-            external_id: contact.externalUserId, // 企业微信外部联系人ID
+            external_id: contact.externalUserId ? contact.externalUserId : 'cs', // 企业微信外部联系人ID
             phone_number: contact.phone ? contact.phone : undefined // 如有手机号可添加
           },
           context: {
@@ -202,9 +202,9 @@ async function sendTikTokServerEvent(contact) {
           properties: {
             content_name: "企业微信添加成功",
             content_type: "contact",
-            external_user_id: contact.externalUserId,
-            user_name: contact.name,
-            value: 0,
+            external_user_id: contact.externalUserId ? contact.externalUserId : 'cs',
+            user_name: contact.name ? contact.name : 'cs',
+            value: 1,
             currency: "CNY"
           }
         }
