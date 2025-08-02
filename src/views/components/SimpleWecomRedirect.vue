@@ -64,7 +64,6 @@ const handleAddWecom = () => {
   selectRandomWecom();
   // 验证成功，触发TikTok转化测试
   triggerTikTokConversion()
-  checkWecomStatus()
 
   // 延迟跳转，显示状态提示
   // setTimeout(() => {
@@ -147,7 +146,7 @@ const triggerTikTokConversion = () => {
       content_id: selectedWecom.value.id,
       content_type: 'wecom',
       value: 1,
-      currency: 1
+      currency: 'CNY'
     });
     console.log('TikTok Pixel转化事件已触发');
   }

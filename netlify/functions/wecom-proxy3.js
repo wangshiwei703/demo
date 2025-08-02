@@ -21,7 +21,7 @@ exports.handler = async (event) => {
 async function sendTikTokServerEvent(contact) {
   try {
     const accessToken = process.env.TIKTOK_ACCESS_TOKEN;
-    const pixelId = process.env.TIKTOK_PIXEL_ID;
+    const pixelId = 'D268FFJC77UAP1JBRVP0';
     
     if (!accessToken || !pixelId) {
       throw new Error("缺少TikTok服务器端事件配置");
@@ -54,7 +54,7 @@ async function sendTikTokServerEvent(contact) {
         }
       ]
     };
-    console.log(eventData);
+
     
     // 发送请求到TikTok服务器端事件API
     const response = await axios.post(
