@@ -62,7 +62,7 @@ const handleAddWecom = () => {
   
   // 随机选择一个企业微信账号
   selectRandomWecom();
-
+triggerTikTokConversion();
   // 延迟跳转，显示状态提示
   setTimeout(() => {
     if (selectedWecom.value) {
@@ -76,7 +76,7 @@ const handleAddWecom = () => {
       statusType.value = 'info';
       
       // 开始定期检查添加状态（5分钟内，每30秒检查一次）
-      startCheckingStatus();
+      // startCheckingStatus();
     } else {
       isProcessing.value = false;
       statusMessage.value = '获取企业微信信息失败，请重试';
@@ -141,9 +141,12 @@ const triggerTikTokConversion = () => {
   // window.tiktokPixel
   if (window.ttq) {
     window.ttq.track('CompleteRegistration', {
-      content_name: '企业微信添加成功',
-      content_id: selectedWecom.value.id,
-      content_type: 'wecom',
+      contents: [
+      {
+        content_id: selectedWecom.value.id,
+        content_name: '企业微信添加成功',
+        content_type: 'wecom',
+      }],
       value: 1,
       currency: 'CNY'
     });
