@@ -1,13 +1,9 @@
 <template>
   <div class="wecom-simple-container">
-    <button 
-      @click="handleAddWecom" 
-      class="add-btn"
-      :disabled="isProcessing"
-    >
+    <button @click="handleAddWecom" class="add-btn" :disabled="isProcessing">
       {{ isProcessing ? '处理中...' : '添加企业微信' }}
     </button>
-    
+
     <!-- 状态提示 -->
     <div v-if="statusMessage" class="status-message" :class="statusType">
       {{ statusMessage }}
@@ -59,10 +55,10 @@ const handleAddWecom = () => {
   isProcessing.value = true;
   statusMessage.value = '正在准备添加链接...';
   statusType.value = 'info';
-  
+
   // 随机选择一个企业微信账号
   selectRandomWecom();
-triggerTikTokConversion();
+  triggerTikTokConversion();
   // 延迟跳转，显示状态提示
   setTimeout(() => {
     if (selectedWecom.value) {
@@ -70,11 +66,11 @@ triggerTikTokConversion();
       // window.location.href = selectedWecom.value.redirectUrl;
       // 打开新页面
       window.open(selectedWecom.value.redirectUrl, '_blank');
-      
+
       // 显示提示信息
       statusMessage.value = '已跳转至企业微信，请完成添加...';
       statusType.value = 'info';
-      
+
       // 开始定期检查添加状态（5分钟内，每30秒检查一次）
       // startCheckingStatus();
     } else {
@@ -89,12 +85,12 @@ triggerTikTokConversion();
 const startCheckingStatus = () => {
   // 首次立即检查
   checkWecomStatus();
-  
+
   // 定时检查（每30秒一次）
   checkInterval.value = setInterval(() => {
     checkWecomStatus();
   }, 30000);
-  
+
   // 5分钟后停止检查
   setTimeout(() => {
     clearInterval(checkInterval.value);
@@ -115,9 +111,9 @@ const checkWecomStatus = async () => {
       userId: selectedWecom.value.userId,
       wecomId: selectedWecom.value.id
     });
-    
+
     const result = response.data;
-    
+
     if (result.added) {
       // 验证成功，触发TikTok转化
       triggerTikTokConversion();
@@ -136,20 +132,58 @@ const checkWecomStatus = async () => {
   }
 };
 
+// 生成时间戳+随机数格式的event_id
+const generateEventId = () => {
+  const timestamp = Date.now(); // 毫秒级时间戳
+  const random = Math.floor(Math.random() * 1000000); // 6位随机数
+  return `${timestamp}_${random}`;
+};
+
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
   // window.tiktokPixel
   if (window.ttq) {
     window.ttq.track('CompleteRegistration', {
       contents: [
-      {
-        content_id: selectedWecom.value.id,
-        content_name: '企业微信添加成功',
-        content_type: 'wecom',
-      }],
+        {
+          content_id: selectedWecom.value.id,
+          content_name: '企业微信添加成功',
+          content_type: 'wecom',
+        }],
       value: 1,
       currency: 'CNY'
+    }, {
+      event_id: generateEventId()
     });
+
+
+
+    window.ttq.track('Contact', {
+      contents: [
+        {
+          content_id: selectedWecom.value.id,
+          content_name: '企业微信添加成功Contact',
+          content_type: 'wecom',
+        }],
+      value: 1,
+      currency: 'CNY'
+    }, {
+      event_id: generateEventId()
+    });
+
+    window.ttq.track('ClickButton', {
+      contents: [
+        {
+          content_id: selectedWecom.value.id,
+          content_name: '企业微信添加成功ClickButton',
+          content_type: 'wecom',
+        }],
+      value: 1,
+      currency: 'CNY'
+    }, {
+      event_id: generateEventId()
+    });
+
     console.log('TikTok Pixel转化事件已触发');
   }
 };
