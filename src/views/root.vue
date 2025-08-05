@@ -1,21 +1,37 @@
 <template>
   <div class="vite-vue3-template-root">
-      小伙子2133123
-      <button>测试按钮</button>
-      <SimpleWecomRedirect />
+      <div class="header">
+        <homeHeader></homeHeader>
+      </div>
+      <div class="main">
+        <replyDialog @addButton="handelAddButton"></replyDialog>
+      </div>
+      <div class="bottom" v-if="addButtonShow">
+        <SimpleWecomRedirect />
+      </div>
   </div>
 </template>
 
 
 <script setup>
 import SimpleWecomRedirect from './components/SimpleWecomRedirect.vue';
+import homeHeader from './home/header.vue';
+import replyDialog from "./home/replyDialog.vue";
+import { ref } from "vue";
+
+const addButtonShow = ref(false)
+
+const handelAddButton = () => {
+  addButtonShow.value = true
+}
 
 
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .vite-vue3-template-root{
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  background-color: #f5f5f5;
 }
 </style>

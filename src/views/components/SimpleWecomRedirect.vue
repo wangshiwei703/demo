@@ -143,33 +143,33 @@ const generateEventId = () => {
 const triggerTikTokConversion = () => {
   // window.tiktokPixel
   if (window.ttq) {
-    window.ttq.track('CompleteRegistration', {
-      contents: [
-        {
-          content_id: selectedWecom.value.id,
-          content_name: '企业微信添加成功',
-          content_type: 'wecom',
-        }],
-      value: 1,
-      currency: 'CNY'
-    }, {
-      event_id: generateEventId()
-    });
+    // window.ttq.track('CompleteRegistration', {
+    //   contents: [
+    //     {
+    //       content_id: selectedWecom.value.id,
+    //       content_name: '企业微信添加成功',
+    //       content_type: 'wecom',
+    //     }],
+    //   value: 1,
+    //   currency: 'CNY'
+    // }, {
+    //   event_id: generateEventId()
+    // });
 
 
 
-    window.ttq.track('Contact', {
-      contents: [
-        {
-          content_id: selectedWecom.value.id,
-          content_name: '企业微信添加成功Contact',
-          content_type: 'wecom',
-        }],
-      value: 1,
-      currency: 'CNY'
-    }, {
-      event_id: generateEventId()
-    });
+    // window.ttq.track('Contact', {
+    //   contents: [
+    //     {
+    //       content_id: selectedWecom.value.id,
+    //       content_name: '企业微信添加成功Contact',
+    //       content_type: 'wecom',
+    //     }],
+    //   value: 1,
+    //   currency: 'CNY'
+    // }, {
+    //   event_id: generateEventId()
+    // });
 
     window.ttq.track('ClickButton', {
       contents: [
