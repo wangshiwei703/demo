@@ -6,11 +6,8 @@
       class="line-btn"
       :disabled="isProcessing"
     >
-      <svg v-if="!isProcessing" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4.5 12C4.5 8.38579 7.38579 5.5 11 5.5H13C16.6142 5.5 19.5 8.38579 19.5 12C19.5 15.6142 16.6142 18.5 13 18.5H11C7.38579 18.5 4.5 15.6142 4.5 12Z" fill="white"/>
-        <path d="M8.5 15L15.5 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      {{ isProcessing ? '处理中...' : '添加LINE企业账号' }}
+      <img src="@image/linelogo.png" />
+      {{ isProcessing ? '处理中...' : '添加LINE账号' }}
     </button>
 
     <!-- 状态提示 -->
@@ -24,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 // 状态管理
@@ -35,21 +32,21 @@ const lineUserId = ref('');
 const checkInterval = ref(null);
 
 // 环境变量（在.env文件中配置）
-const LINE_LIFF_ID = import.meta.env.VITE_LINE_LIFF_ID;
-const LINE_ADD_URL = import.meta.env.VITE_LINE_ADD_URL;
+// const LINE_LIFF_ID = import.meta.env.VITE_LINE_LIFF_ID;
+// const LINE_ADD_URL = import.meta.env.VITE_LINE_ADD_URL;
 
 // 初始化LINE LIFF
 onMounted(async () => {
-  try {
-    // 加载LINE LIFF SDK
-    const script = document.createElement('script');
-    script.src = 'https://d.line-scdn.net/liff/1.0/sdk.js';
-    script.onload = initLiff;
-    document.head.appendChild(script);
-  } catch (error) {
-    setStatus('LINE服务初始化失败，请稍后再试', 'error');
-    console.error('LINE初始化失败:', error);
-  }
+  // try {
+  //   // 加载LINE LIFF SDK
+  //   const script = document.createElement('script');
+  //   script.src = 'https://d.line-scdn.net/liff/1.0/sdk.js';
+  //   script.onload = initLiff;
+  //   document.head.appendChild(script);
+  // } catch (error) {
+  //   setStatus('LINE服务初始化失败，请稍后再试', 'error');
+  //   console.error('LINE初始化失败:', error);
+  // }
 });
 
 // 初始化LIFF
@@ -75,22 +72,23 @@ const initLiff = async () => {
 
 // 处理添加LINE操作
 const handleAddLine = async () => {
-  if (!lineUserId.value) {
-    setStatus('请先登录LINE账号', 'error');
-    return;
-  }
+  // if (!lineUserId.value) {
+  //   setStatus('请先登录LINE账号', 'error');
+  //   return;
+  // }
 
   isProcessing.value = true;
   setStatus('正在跳转到LINE添加页面...', 'info');
-
+  triggerTikTokConversion()
   try {
     // 1. 打开LINE添加页面
-    window.open(LINE_ADD_URL, '_blank');
+    window.open('https://line.me/ti/p/dZG9cwvMLs', '_blank');
+    // window.location.href = 'https://line.me/ti/p/dZG9cwvMLs';
     
     // 2. 2秒后开始验证（等待用户操作）
-    setTimeout(() => {
-      startVerification();
-    }, 2000);
+    // setTimeout(() => {
+    //   startVerification();
+    // }, 2000);
   } catch (error) {
     isProcessing.value = false;
     setStatus('操作失败，请重试', 'error');
@@ -150,32 +148,91 @@ const setStatus = (message, type) => {
   statusType.value = type;
 };
 
+
+// 触发TikTok Pixel转化事件
+const triggerTikTokConversion = () => {
+  // window.tiktokPixel
+  if (window.ttq) {
+    // window.ttq.track('CompleteRegistration', {
+    //   contents: [
+    //     {
+    //       content_id: selectedWecom.value.id,
+    //       content_name: '企业微信添加成功',
+    //       content_type: 'wecom',
+    //     }],
+    //   value: 1,
+    //   currency: 'CNY'
+    // }, {
+    //   event_id: generateEventId()
+    // });
+
+
+
+    // window.ttq.track('Contact', {
+    //   contents: [
+    //     {
+    //       content_id: selectedWecom.value.id,
+    //       content_name: '企业微信添加成功Contact',
+    //       content_type: 'wecom',
+    //     }],
+    //   value: 1,
+    //   currency: 'CNY'
+    // }, {
+    //   event_id: generateEventId()
+    // });
+
+    window.ttq.track('ClickButton', {
+      contents: [
+        {
+          content_id: 'lineId',
+          content_name: '企业微信添加成功ClickButton',
+          content_type: 'wecom',
+        }],
+      value: 1,
+      currency: 'CNY'
+    }, {
+      event_id: generateEventId()
+    });
+
+    console.log('TikTok Pixel转化事件已触发');
+  }
+};
+
+// 生成时间戳+随机数格式的event_id
+const generateEventId = () => {
+  const timestamp = Date.now(); // 毫秒级时间戳
+  const random = Math.floor(Math.random() * 1000000); // 6位随机数
+  return `${timestamp}_${random}`;
+};
+
 // 组件卸载时清理
 onUnmounted(() => {
-  if (checkInterval.value) {
-    clearInterval(checkInterval.value);
-  }
+  // if (checkInterval.value) {
+  //   clearInterval(checkInterval.value);
+  // }
 });
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .line-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background-color: #00B900;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  background-color: #5ACF36;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 30px;
+  }
 }
 
 .line-btn:hover:not(:disabled) {
-  background-color: #00a000;
+  background-color: #5ACF36;
 }
 
 .line-btn:disabled {

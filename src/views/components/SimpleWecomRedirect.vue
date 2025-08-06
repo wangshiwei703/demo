@@ -1,6 +1,7 @@
 <template>
   <div class="wecom-simple-container">
     <button @click="handleAddWecom" class="add-btn" :disabled="isProcessing">
+      <img src="@image/wxlogo.png" />
       {{ isProcessing ? '处理中...' : '添加企业微信' }}
     </button>
 
@@ -189,27 +190,31 @@ const triggerTikTokConversion = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .wecom-simple-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
 }
 
 .add-btn {
-  padding: 0.8rem 2rem;
+  padding: 0.5rem 2rem;
   font-size: 1rem;
-  background-color: #07C160;
+  background-color: #2DC100;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  img {
+    width: 30px;
+  }
 }
 
 .add-btn:hover:not(:disabled) {
-  background-color: #06b356;
+  background-color: #2DC100;
 }
 
 .add-btn:disabled {

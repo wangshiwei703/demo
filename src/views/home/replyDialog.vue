@@ -112,7 +112,7 @@ const handleOptionSelect = (selectedOption) => {
     ];
    } else if(selectedOption === '我愿意'){
     conversationMessages.value.push({
-      content: '恭喜您符合 免费领取 的条件，现在点击下方按钮 添加客服主动打招呼，即可免费领取，以打招呼先后顺序排名，仅剩最后17个!',
+      content: '恭喜您符合 <span style="color: red;font-weight: bold;">免费领取</span> 的条件，现在点击下方按钮 添加客服主动打招呼，即可免费领取，以打招呼先后顺序排名，仅剩最后17个!',
       isUser: false
     });
     conversationMessages.value.push({
@@ -135,7 +135,7 @@ const handleOptionSelect = (selectedOption) => {
 
 <style scoped>
 .dialog-container {
-  margin: 20px auto;
+  margin-top: 20px;
   padding: 10px;
   border-radius: 10px;
 }
