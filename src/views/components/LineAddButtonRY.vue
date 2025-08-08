@@ -28,14 +28,35 @@ const isProcessing = ref(false);
 const statusMessage = ref('');
 const statusType = ref('');
 
+// line账号
+const lineList = [{
+  id:'jfjf5320',
+  url: 'https://line.me/ti/p/MkbMpsd3r2',
+},{
+  id:'zsw1y',
+  url: 'https://line.me/ti/p/m_PyqSKD7Y',
+},{
+  id:'zbw1n',
+  url: 'https://line.me/ti/p/UwJa5DD-nF',
+}]
+
+// 随机选择一个企业微信账号
+const selectRandomWecom = () => {
+  const randomIndex = Math.floor(Math.random() * lineList.length);
+  return lineList[randomIndex];
+};
+
 // 处理添加LINE操作
 const handleAddLine = async () => {
   isProcessing.value = true;
   setStatus('LINE追加ページに移動しています...', 'info');
   triggerTikTokConversion()
   try {
+    const lineObj = selectRandomWecom()
+    console.log(lineObj);
+    
     // 1. 打开LINE添加页面
-    window.open('https://line.me/ti/p/dZG9cwvMLs', '_blank');
+    window.open(lineObj.url, '_blank');
     // window.location.href = 'https://line.me/ti/p/dZG9cwvMLs';
   } catch (error) {
     isProcessing.value = false;
@@ -53,8 +74,6 @@ const setStatus = (message, type) => {
 
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
-  console.log('31231');
-  
   if (window.ttq) {
     window.ttq.track('ClickButton', {
       contents: [
