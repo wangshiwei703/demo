@@ -6,12 +6,10 @@
       <div v-for="(message, index) in conversationMessages" :key="index" class="message-item"
         :class="{ 'user-message': message.isUser }">
         <!-- 系统消息的标签 -->
-        <img class="system-img" src="@image/kefu.png" alt="headPortrait" v-if="!message.isUser" />
+        <img class="system-img" src="@image/hushi.png" alt="headPortrait" v-if="!message.isUser" />
         <!-- 消息内容气泡 -->
         <div class="message-bubble">
           <span v-html="message.content"></span>
-          <span style="color: red;font-weight: bold;" @click="handeltzb()"
-            v-if="message.content == 'ダイエットプランがある場合、あなたの現在の体重はどのカテゴリに属しますか？'">(体重表を見る)</span>
         </div>
         <!-- 用户消息的标签 -->
         <img class="avatar-img" src="@image/avatar.jpg" alt="avatar" v-if="message.isUser" />
@@ -25,12 +23,6 @@
         {{ option }}
       </button>
     </div>
-
-
-    <!-- 右侧弹出 -->
-    <van-popup v-model:show="showRight" :overlay="true">
-      <img style="width: 100%;" src="@image/tzb.png" alt="avatar" />
-    </van-popup>
   </div>
 </template>
 
@@ -39,15 +31,15 @@ import { ref } from 'vue';
 const emit = defineEmits(['addButton']);
 // 存储所有对话消息
 const conversationMessages = ref([
-  { content: 'こんにちは～あなたの状況を簡単に知りたいと思っています。より適切なプランをおすすめしたいので～今、ダイエットの計画はありますか？', isUser: false },
+  { content: 'こんにちは!私たちは東京大学のトップ研究チームと協力して、“若者科学減量計画”を推進しています!', isUser: false },
+  { content: 'これは通常の減量プログラムではなく、最先端の代謝研究と個別化された介入プログラムを組み合わせた正確な計画です。私たちの目標は明確です：最小限の投資（時間+お金）で、最短サイクルで安全で健康的な理想的な姿勢を達成するお手伝いをします!', isUser: false },
+  { content: 'お客様に最適なソリューションを正確に一致させ、効果と効率を最大化するために、1分でいくつかの小さな質問を完了するよう招待します。', isUser: false }
 ]);
 
 // 当前可选择的选项
 const currentOptions = ref([
-  '痩せたいと思っています。',
-  'あるが、まだ躊躇している。',
-  '今のところダイエットの考えはありません。',
-  '自分はダイエットする必要がないと思う'
+  'いいえ、いいえ。',
+  '喜んで。',
 ]);
 
 // 控制选项是否显示
@@ -62,21 +54,8 @@ const handleOptionSelect = (selectedOption) => {
   });
 
   // 根据选择展示不同回复
-  if (selectedOption === '痩せたいと思っています。' || selectedOption === 'あるが、まだ躊躇している。') {
-    // 愿意配合的后续问题
-    conversationMessages.value.push({
-      content: 'ダイエットプランがある場合、あなたの現在の体重はどのカテゴリに属しますか？',
-      isUser: false
-    });
-    // 更新下一轮选项
-    currentOptions.value = [
-      '超重 5-10 キログラム',
-      '超重 10-20 キログラム',
-      '超重 20 キログラム以上',
-      '現在の体重は正常ですが、太らないように予防したいです。'
-    ];
-  } else if (selectedOption === '超重 5-10 キログラム' || selectedOption === '超重 10-20 キログラム' || selectedOption === '超重 20 キログラム以上' || selectedOption === '現在の体重は正常ですが、太らないように予防したいです。') {
-    // 免费听课领养生书的后续问题
+  if (selectedOption === '喜んで。') {
+    // 年龄
     conversationMessages.value.push({
       content: 'あなたは今年何歳ですか？',
       isUser: false
@@ -85,38 +64,50 @@ const handleOptionSelect = (selectedOption) => {
     currentOptions.value = [
       '18歳以下',
       '18-25',
-      '26-40',
-      '40歳以上'
+      '26-35',
+      '36-45',
+      '45歳以上'
     ];
-  } else if (selectedOption === '18-25' || selectedOption === '26-40') {
-    // 年龄的后续问题
+  } else if (selectedOption === '18-25' || selectedOption === '26-35' || selectedOption === '36-45' || selectedOption === '45歳以上') {
+    // 身高
     conversationMessages.value.push({
-      content: 'では、ダイエット方法を試したことがありますか？',
+      content: '現在の身長は？',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '試したことがないので、始めたいです。',
-      'ダイエットや運動を試みたが、続けられなかった。',
-      '他の製品を使ったが、効果は普通だった。',
-      '現在、脂肪吸引などの医療手段を通じて減量しています。'
+      '145CM未満',
+      '145-155CM',
+      '155-165CM',
+      '165以上'
     ];
-  } else if (selectedOption === '試したことがないので、始めたいです。' || selectedOption === 'ダイエットや運動を試みたが、続けられなかった。' || selectedOption === '他の製品を使ったが、効果は普通だった。' || selectedOption === '現在、脂肪吸引などの医療手段を通じて減量しています。') {
-    // 年龄的后续问题
+  } else if (selectedOption === '145-155CM' || selectedOption === '155-165CM' || selectedOption === '165以上') {
+    // 体重
     conversationMessages.value.push({
-      content: '最後にお尋ねしますが、商品を通じて何を最も改善したいですか？',
+      content: '現在の体重は？',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '迅速に痩せるために、例えば1ヶ月で5キロ以上減らすこと。',
-      '健康的な減量、リバウンドしない',
-      '局部（腰腹/大腿）の脂肪減少に向けて',
-      '1日に3キロ以上痩せるための迅速なダイエット',
+      '45Kg未満',
+      '45-60Kg',
+      '60-75kg',
+      '75Kg以上',
     ];
-  } else if (selectedOption === '迅速に痩せるために、例えば1ヶ月で5キロ以上減らすこと。' || selectedOption === '健康的な減量、リバウンドしない' || selectedOption === '局部（腰腹/大腿）の脂肪減少に向けて' || selectedOption === '1日に3キロ以上痩せるための迅速なダイエット') {
+  } else if (selectedOption === '45-60Kg' || selectedOption === '60-75kg' || selectedOption === '75Kg以上') {
+    // 减肥周期
     conversationMessages.value.push({
-      content: 'はい、私は大体あなたのニーズを理解しました～私はあなたに合ったダイエットプランを整理しました。それには、あなたに適した製品の使い方や食事のアドバイスが含まれています。今すぐ<span style="color: red;font-weight: bold;">下のボタンをクリック</span>して、カスタマーサービスに挨拶をしてみてください。',
+      content: 'どのくらいの減量サイクルを受け入れたいですか？',
+      isUser: false
+    });
+    currentOptions.value = [
+      '15日未満。',
+      '15〜30日',
+      '30日以上'
+    ]
+  } else if (selectedOption === '15日未満。' || selectedOption === '15〜30日' || selectedOption === '30日以上') {
+    conversationMessages.value.push({
+      content: 'はい、私はあなたのニーズを大まかに理解しました〜私たちが特別に招いた国際的に有名な減量とボディシェイピングの専門家が、あなたに適したダイエットプランを作成しました。それには、あなたに合った製品の使用と食事運動のアドバイスが含まれています。今、<span style="color: red;font-weight: bold;">下のボタンをクリックして</span>、カスタマーサービスに詳細な情報を問い合わせてください。',
       isUser: false
     });
     currentOptions.value = []
@@ -131,14 +122,6 @@ const handleOptionSelect = (selectedOption) => {
     showOptions.value = false;
   }
 };
-
-
-
-const showRight = ref(false)
-// 体重表弹出窗
-const handeltzb = () => {
-  showRight.value = true
-}
 </script>
 
 <style scoped>
