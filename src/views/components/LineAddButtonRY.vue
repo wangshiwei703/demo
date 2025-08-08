@@ -53,6 +53,8 @@ const setStatus = (message, type) => {
 
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
+  console.log('31231');
+  
   if (window.ttq) {
     window.ttq.track('ClickButton', {
       contents: [
