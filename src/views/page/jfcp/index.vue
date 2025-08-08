@@ -55,6 +55,7 @@ const scrollToBottom = () => {
   overflow-y: auto; /* 关键：允许容器滚动 */
   -webkit-overflow-scrolling: touch; /* 移动端滚动优化 */
   box-sizing: border-box; /* 确保padding不影响整体尺寸 */
+  padding-bottom: 30px;
 
   .bottom {
     display: flex;
