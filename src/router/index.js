@@ -32,6 +32,15 @@ const routes = [
       keepAlive: true
     }
   },
+  {
+     path: '/zycp',
+    name: 'zycp',
+    component: () => import('@/views/page/zycp/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  }
   // {
   //   path: '/login',
   //   name: 'login',
