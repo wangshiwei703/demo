@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from 'vue';
-const emit = defineEmits(['addButton']);
+const emit = defineEmits(['addButton','scrollToBottom']);
 // 存储所有对话消息
 const conversationMessages = ref([
   { content: 'こんにちは!私たちは東京大学のトップ研究チームと協力して、“若者科学減量計画”を推進しています!', isUser: false },
@@ -121,6 +121,8 @@ const handleOptionSelect = (selectedOption) => {
     // 隐藏选项
     showOptions.value = false;
   }
+
+  emit('scrollToBottom');
 };
 </script>
 

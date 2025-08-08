@@ -7,7 +7,7 @@
       :disabled="isProcessing"
     >
       <img src="@image/linelogo.png" />
-      {{ isProcessing ? '処理中...' : 'LINEアカウントを追加する' }}
+      {{ isProcessing ? '処理中...' : 'LINEの追加' }}
     </button>
 
     <!-- 状态提示 -->
@@ -27,7 +27,6 @@ import { ref } from 'vue';
 const isProcessing = ref(false);
 const statusMessage = ref('');
 const statusType = ref('');
-
 
 // 处理添加LINE操作
 const handleAddLine = async () => {
@@ -85,7 +84,7 @@ const generateEventId = () => {
 .line-btn {
   padding: 0.5rem 2rem;
   font-size: 1rem;
-  background-color: #5ACF36;
+  background-color: #35c300;
   color: white;
   border: none;
   border-radius: 6px;
@@ -95,12 +94,13 @@ const generateEventId = () => {
   align-items: center;
 
   img {
-    width: 30px;
+    width: 50px;
+    margin-right: 10px;
   }
 }
 
 .line-btn:hover:not(:disabled) {
-  background-color: #5ACF36;
+  background-color: #35c300;
 }
 
 .line-btn:disabled {
