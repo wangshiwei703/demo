@@ -32,10 +32,10 @@
 
 
 <script setup>
-import SimpleWecomRedirect from './components/SimpleWecomRedirect.vue';
-import LineAddButton from './components/LineAddButton.vue';
-import homeHeader from './home/header.vue';
-import replyDialog from "./home/replyDialog.vue";
+import SimpleWecomRedirect from '../../components/SimpleWecomRedirect.vue';
+import LineAddButton from '../../components/LineAddButton.vue';
+import homeHeader from './components/header.vue';
+import replyDialog from "./components/replyDialog.vue";
 import { ref, onMounted } from "vue";
 
 const addButtonShow = ref(false)

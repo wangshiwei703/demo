@@ -8,8 +8,25 @@ import {
 const routes = [
   {
     path: '/',
-    name: 'root',
-    component: () => import('@/views/root.vue'),
+    redirect: '/jfcp',
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/jfcp',
+    name: 'jfcp',
+    component: () => import('@/views/page/jfcp/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/zyys',
+    name: 'zyys',
+    component: () => import('@/views/page/zyys/index.vue'),
     meta: {
       requiresAuth: true,
       keepAlive: true
