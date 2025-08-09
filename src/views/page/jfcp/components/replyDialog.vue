@@ -31,13 +31,18 @@ import { ref } from 'vue';
 const emit = defineEmits(['addButton','scrollToBottom']);
 // 存储所有对话消息
 const conversationMessages = ref([
-  { content: 'こんにちは！お客様に最適なプランを正確にマッチングし、効果と効率を最大化するために、1分だけお時間をいただき、いくつかの質問にお答えいただけますでしょうか？', isUser: false }
+  { content: 'こんにちは！私たちは東京大学のトップ研究チームと提携し、「科学減量・ボディシェイプ計画」を熱心に推進中です。', isUser: false },
+  { content: 'お客様に最適なプランを正確にマッチングし、最大限の効果と効率を実現するため、1分ほどでいくつかの質問にお答えいただけませんか？', isUser: false },
+  { content: 'お客様の年齢をお教えください。', isUser: false }
 ]);
 
 // 当前可选择的选项
 const currentOptions = ref([
-  'いいえ、いいえ。',
-  '喜んで。',
+  '18歳未満',
+  '18～25歳',
+  '25～35歳',
+  '35～45歳',
+  '45歳以上'
 ]);
 
 // 控制选项是否显示
@@ -52,50 +57,36 @@ const handleOptionSelect = (selectedOption) => {
   });
 
   // 根据选择展示不同回复
-  if (selectedOption === '喜んで。') {
-    // 年龄
-    conversationMessages.value.push({
-      content: 'あなたは今年何歳ですか？',
-      isUser: false
-    });
-    // 更新下一轮选项
-    currentOptions.value = [
-      '18歳以下',
-      '18-25',
-      '26-35',
-      '36-45',
-      '45歳以上'
-    ];
-  } else if (selectedOption === '18-25' || selectedOption === '26-35' || selectedOption === '36-45' || selectedOption === '45歳以上') {
+  if (selectedOption === '18～25歳' || selectedOption === '25～35歳' || selectedOption === '35～45歳' || selectedOption === '45歳以上') {
     // 身高
     conversationMessages.value.push({
-      content: '現在の身長は？',
+      content: '現在の身長をお教えください。',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
       '145CM未満',
-      '145-155CM',
-      '155-165CM',
-      '165以上'
+      '145～155cm',
+      '155～165cm',
+      '165cm以上'
     ];
-  } else if (selectedOption === '145-155CM' || selectedOption === '155-165CM' || selectedOption === '165以上') {
+  } else if (selectedOption === '145～155cm' || selectedOption === '155～165cm' || selectedOption === '165cm以上') {
     // 体重
     conversationMessages.value.push({
-      content: '現在の体重は？',
+      content: '現在の体重をお教えください。',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
       '45Kg未満',
-      '45-60Kg',
-      '60-75kg',
+      '45～60kg',
+      '60～75kg',
       '75Kg以上',
     ];
-  } else if (selectedOption === '45-60Kg' || selectedOption === '60-75kg' || selectedOption === '75Kg以上') {
+  } else if (selectedOption === '45～60kg' || selectedOption === '60～75kg' || selectedOption === '75Kg以上') {
     // 减肥周期
     conversationMessages.value.push({
-      content: 'どのくらいの減量サイクルを受け入れたいですか？',
+      content: 'お受け入れ可能な減量期間はどれくらいですか？',
       isUser: false
     });
     currentOptions.value = [
@@ -105,7 +96,7 @@ const handleOptionSelect = (selectedOption) => {
     ]
   } else if (selectedOption === '15日未満。' || selectedOption === '15〜30日' || selectedOption === '30日以上') {
     conversationMessages.value.push({
-      content: 'はい、私はあなたのニーズを大まかに理解しました〜私たちが特別に招いた国際的に有名な減量とボディシェイピングの専門家が、あなたに適したダイエットプランを作成しました。それには、あなたに合った製品の使用と食事運動のアドバイスが含まれています。今、<span style="color: red;font-weight: bold;">下のボタンをクリックして</span>、カスタマーサービスに詳細な情報を問い合わせてください。',
+      content: 'はい、お客様のご要望を大まかに把握いたしました。詳細な情報については、下記のボタンをクリックしてカスタマーサービス担当者にお問い合わせください。',
       isUser: false
     });
     currentOptions.value = []
@@ -113,7 +104,7 @@ const handleOptionSelect = (selectedOption) => {
   } else {
     // 不愿意配合的回复
     conversationMessages.value.push({
-      content: 'お時間をいただきありがとうございます～今後、関連するご要望やご質問があれば、いつでも私にご連絡ください。すべてが順調に進むことを願っています！',
+      content: '誠に残念ながら、お客様は今回の「減量・ボディシェイプ計画」の参加条件を満たしておりません。重複して送信されませんようお願い申し上げます。',
       isUser: false
     });
     // 隐藏选项
