@@ -3,12 +3,7 @@
   <div class="ab-container">
     <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
     <div v-if="showPageA" class="page-a">
-      <h2>合规产品介绍</h2>
-      <p>符合平台政策的产品说明、资质证明、正规服务流程...</p>
-      <div class="compliance-info">
-        <p>资质编号：XXX-XXXX-XXXX</p>
-        <p>服务条款：[链接至合规条款]</p>
-      </div>
+      <img src="@image/zyysA.jpg"  style="width: 100%;height: 100%;"/>
     </div>
 
     <!-- B页：真实TikTok用户可见（定制化内容） -->

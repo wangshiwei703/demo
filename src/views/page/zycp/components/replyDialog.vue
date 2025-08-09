@@ -95,15 +95,6 @@ const handleOptionSelect = (selectedOption) => {
       content: '好的，大致问题老师已经了解，老师曾帮助过10万人成功改善了男性问题，用了老师的方法后会一点点变好，当天就能见效!纯绿色健康不伤身，这个请您放心就好，这边还需您加一下老师的联系方式，进一步的教你如果处理男题!',
       isUser: false
     });
-    currentOptions.value = [
-      '我愿意',
-      '不愿意',
-    ]
-  } else if (selectedOption === '我愿意') {
-    conversationMessages.value.push({
-      content: '恭喜您符合条件，现在点击下方按钮添加客服主动打招呼，即可免费咨询，以打招呼先后顺序排名，仅剩最后17个!',
-      isUser: false
-    });
     currentOptions.value = []
     emit('addButton');
   } else {
