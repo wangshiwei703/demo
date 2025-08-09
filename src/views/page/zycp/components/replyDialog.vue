@@ -31,13 +31,13 @@ import { ref } from 'vue';
 const emit = defineEmits(['addButton','scrollToBottom']);
 // 存储所有对话消息
 const conversationMessages = ref([
-  { content: '你好，欢迎咨询男性健康管理中心，请问您是想改善男性（早X、阳W、前列X、肾虚）等问题吗？蜕变成功后的你一定会感谢今天的这一次选择，请回答几个问题，是否愿意？', isUser: false }
+  { content: 'こんにちは、男性健康管理センターの相談を受け付けております。男性（早漏、勃起不全、前立腺、腎虚）などのお悩み改善をご希望ですか？変われたあなたは、きっと今日この選択を感謝されるはずです。いくつか質問にお答えいただけますか？', isUser: false }
 ]);
 
 // 当前可选择的选项
 const currentOptions = ref([
-  '愿意配合',
-  '不愿意配合',
+  'ご協力いただける',
+  'ご協力いただけない',
 ]);
 
 // 控制选项是否显示
@@ -52,47 +52,47 @@ const handleOptionSelect = (selectedOption) => {
   });
 
   // 根据选择展示不同回复
-  if (selectedOption === '愿意配合') {
+  if (selectedOption === 'ご協力いただける') {
     // 年龄
     conversationMessages.value.push({
-      content: '您今年多大年龄',
+      content: 'お客様の年齢をお教えください',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '25-35',		
-      '35-45',
-      '45-55',
-      '55-65'
+      '25歳未満',		
+      '25～35歳',
+      '35～45歳',
+      '45歳以上'
     ];
-  } else if (selectedOption === '25-35' || selectedOption === '35-45' || selectedOption === '45-55' || selectedOption === '55-65') {
+  } else if (selectedOption === '25歳未満' || selectedOption === '25～35歳' || selectedOption === '35～45歳' || selectedOption === '45歳以上') {
     // 体重
     conversationMessages.value.push({
-      content: '请问你想咨询哪方面的问题?',
+      content: 'どのようなお悩みについてご相談されますか？',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '改善(早X)',
-      '改善(阳W)',
-      '改善(前列X)',
-      '改善(肾虚)',
+      '早漏の改善',
+      '勃起不全の改善',
+      'ペニス短小の改善',
+      '腎虚の改善',
     ];
-  } else if (selectedOption === '改善(早X)' || selectedOption === '改善(阳W)' || selectedOption === '改善(前列X)' || selectedOption === '改善(肾虚)') {
+  } else if (selectedOption === '早漏の改善' || selectedOption === '勃起不全の改善' || selectedOption === 'ペニス短小の改善' || selectedOption === '腎虚の改善') {
     // 减肥周期
     conversationMessages.value.push({
-      content: '请问您的房事时间维持多久?',
+      content: '性生活の持続時間はどれくらいですか？',
       isUser: false
     });
     currentOptions.value = [
-      '0-10分钟',
-      '10-15分钟',
-      '15-20分钟',
-      '20-30分钟'
+      '0～10分',
+      '10～15分',
+      '15～20分',
+      '20～30分'
     ]
-  } else if (selectedOption === '0-10分钟' || selectedOption === '10-15分钟' || selectedOption === '15-20分钟' || selectedOption === '20-30分钟') {
+  } else if (selectedOption === '0～10分' || selectedOption === '10～15分' || selectedOption === '15～20分' || selectedOption === '20～30分') {
     conversationMessages.value.push({
-      content: '好的，大致问题老师已经了解，老师曾帮助过10万人成功改善了男性问题，用了老师的方法后会一点点变好，当天就能见效!纯绿色健康不伤身，这个请您放心就好，这边还需您加一下老师的联系方式，进一步的教你如果处理男题!',
+      content: '当センターの専門家は経験豊富で、すでに10万人以上の男性のお悩み改善をお手伝いし、その日の改善を実感していただいております。健康に害はありません。下記ボタンをクリックし、専門家アシスタントのLINEを追加して、詳しい情報をご覧ください。',
       isUser: false
     });
     currentOptions.value = []
@@ -100,7 +100,7 @@ const handleOptionSelect = (selectedOption) => {
   } else {
     // 不愿意配合的回复
     conversationMessages.value.push({
-      content: '对不起，您不具备领取条件，请勿重复提交，谢谢!',
+      content: '申し訳ございませんが、あなたは今回のキャンペーンの対象条件を満たしておりません。重複して送信しないでください。ご了承ください。',
       isUser: false
     });
     // 隐藏选项

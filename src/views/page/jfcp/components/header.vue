@@ -1,6 +1,6 @@
 <template>
     <div class="homg-header">
-        <img src="@image/jfcp-header2.jpg" alt="header" />
+        <img src="@image/jfcp-header3.jpg" alt="header" />
     </div>
 </template>
 

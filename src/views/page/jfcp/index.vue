@@ -7,7 +7,7 @@
       <replyDialog @addButton="handelAddButton" @scrollToBottom="scrollToBottom"></replyDialog>
     </div>
     <div class="bottom" v-if="addButtonShow">
-      <LineAddButton />
+      <LineAddButton :lineList="parentLineList"/>
     </div>
   </div>
 </template>
@@ -18,6 +18,20 @@ import LineAddButton from '../../components/LineAddButtonRY.vue';
 import homeHeader from './components/header.vue';
 import replyDialog from "./components/replyDialog.vue";
 import { ref, nextTick } from "vue";
+
+// line账号
+const parentLineList = [{
+  id:'jfjf5320',
+  url: 'https://line.me/ti/p/MkbMpsd3r2',
+},{
+  id:'zsw1y',
+  url: 'https://line.me/ti/p/m_PyqSKD7Y',
+},{
+  id:'zbw1n',
+  url: 'https://line.me/ti/p/UwJa5DD-nF',
+}]
+
+
 
 const addButtonShow = ref(false)
 

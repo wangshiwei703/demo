@@ -23,25 +23,35 @@
 <script setup>
 import { ref } from 'vue';
 
+const props = defineProps({
+  lineList: {
+    type: Array,
+    // 对象/数组的默认值需用函数返回
+    default: () => ([])
+  }
+})
+
+
 // 状态管理
 const isProcessing = ref(false);
 const statusMessage = ref('');
 const statusType = ref('');
 
 // line账号
-const lineList = [{
-  id:'jfjf5320',
-  url: 'https://line.me/ti/p/MkbMpsd3r2',
-},{
-  id:'zsw1y',
-  url: 'https://line.me/ti/p/m_PyqSKD7Y',
-},{
-  id:'zbw1n',
-  url: 'https://line.me/ti/p/UwJa5DD-nF',
-}]
+// const lineList = [{
+//   id:'jfjf5320',
+//   url: 'https://line.me/ti/p/MkbMpsd3r2',
+// },{
+//   id:'zsw1y',
+//   url: 'https://line.me/ti/p/m_PyqSKD7Y',
+// },{
+//   id:'zbw1n',
+//   url: 'https://line.me/ti/p/UwJa5DD-nF',
+// }]
 
 // 随机选择一个企业微信账号
 const selectRandomWecom = () => {
+  const lineList = props.lineList
   const randomIndex = Math.floor(Math.random() * lineList.length);
   return lineList[randomIndex];
 };
