@@ -234,9 +234,9 @@ async function sendTikTokEvent(contact) {
         }
       }]
     };
-
+// /open_api/v1.3/event/track/
     const response = await axios.post(
-      "https://business-api.tiktok.com/open_api/v1.3/pixel/track/",
+      "https://business-api.tiktok.com/open_api/v1.3/event/track/",
       eventData,
       {
         headers: {

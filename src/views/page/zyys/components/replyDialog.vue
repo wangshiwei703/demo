@@ -39,14 +39,14 @@ import { ref } from 'vue';
 const emit = defineEmits(['addButton']);
 // 存储所有对话消息
 const conversationMessages = ref([
-  { content: '你好！我是养生小助理，完成问题可报名免费中医养生课', isUser: false },
-  { content: '领取养生书需配合完成注册，是否愿意？', isUser: false }
+  { content: '你好！我是養生小助理，完成問題可報名免費中醫養生課', isUser: false },
+  { content: '領取養生書需配合完成註冊，是否願意？', isUser: false }
 ]);
 
 // 当前可选择的选项
 const currentOptions = ref([
-  '愿意配合',
-  '不愿意配合'
+  '願意配合',
+  '不願意配合'
 ]);
 
 // 控制选项是否显示
@@ -61,70 +61,70 @@ const handleOptionSelect = (selectedOption) => {
   });
 
   // 根据选择展示不同回复
-  if (selectedOption === '愿意配合') {
-    // 愿意配合的后续问题
+  if (selectedOption === '願意配合') {
+    // 願意配合的后续问题
     conversationMessages.value.push({
-      content: '养生中心为了更好的帮助有需求的人，请问您的真实意图是什么？',
+      content: '養生中心爲了更好的幫助有需求的人，請問您的真實意圖是什麼？',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '免费听课领养生书',
-      '看小说跳过广告',
-      '领取看广告的金币',
-      '领游戏道具福利'
+      '免費聽課領養生書',
+      '看小說跳過廣告',
+      '領取看廣告的金幣',
+      '領遊戲道具福利'
     ];
-  } else if(selectedOption === '免费听课领养生书'){
-    // 免费听课领养生书的后续问题
+  } else if(selectedOption === '免費聽課領養生書'){
+    // 免費聽課領養生書的后续问题
     conversationMessages.value.push({
-      content: '您今年多大年龄呢?(仅限五十岁以上领取)',
+      content: '您今年多大年齡呢?(僅限五十歲以上領取)',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '50岁以下',
+      '50歲以下',
       '50-55',
       '55-60',
-      '60岁以上'
+      '60歲以上'
     ];
-  } else if(selectedOption === '50-55' || selectedOption === '55-60' || selectedOption === '60岁以上'){
+  } else if(selectedOption === '50-55' || selectedOption === '55-60' || selectedOption === '60歲以上'){
     // 年龄的后续问题
     conversationMessages.value.push({
-      content: '请选择您想领取养生书的用途？',
+      content: '請選擇您想領取養生書的用途？',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '用来学习养生知识',
-      '用来日常预防疾病',
-      '用来调理血压血糖',
+      '用來學習養生知識',
+      '用來日常預防疾病',
+      '用來調理血壓血糖',
     ];
-  } else if(selectedOption === '用来学习养生知识' || selectedOption === '用来日常预防疾病' || selectedOption === '用来调理血压血糖'){
+  } else if(selectedOption === '用來學習養生知識' || selectedOption === '用來日常預防疾病' || selectedOption === '用來調理血壓血糖'){
     // 年龄的后续问题
     conversationMessages.value.push({
-      content: '是否愿意添加客服微信按照客服提示领取养生书养生课？',
+      content: '是否願意添加客服微信按照客服提示領取養生書養生課？',
       isUser: false
     });
     // 更新下一轮选项
     currentOptions.value = [
-      '我愿意',
-      '我不愿意',
+      '我願意',
+      '我不願意',
     ];
-   } else if(selectedOption === '我愿意'){
+   } else if(selectedOption === '我願意'){
     conversationMessages.value.push({
-      content: '恭喜您符合 <span style="color: red;font-weight: bold;">免费领取</span> 的条件，现在点击下方按钮 添加客服主动打招呼，即可免费领取，以打招呼先后顺序排名，仅剩最后17个!',
+      content: '恭喜您符合 <span style="color: red;font-weight: bold;">免費領取</span> 的條件，現在點擊下方按鈕 添加客服主動打招呼，即可免費領取，以打招呼先後順序排名，僅剩最後17個!',
       isUser: false
     });
     conversationMessages.value.push({
-      content: '官方告知函：添加客服即代表获取到免费资格，请主动与客服打招呼申请，不说话者，不配合注册领取流程者，将被平台拉黑，今后将列为本平台失信人员，无法参与平台所有商品的免费领取活动！！',
+      content: '官方告知函：添加客服即代表獲取到免費資格，請主動與客服打招呼申請，不說話者，不配合註冊領取流程者，將被平臺拉黑，今後將列爲本平臺失信人員，無法參與平臺所有商品的免費領取活動！！',
       isUser: false
     });
     currentOptions.value = []
     emit('addButton');
    } else {
-    // 不愿意配合的回复
+    // 不願意配合的回复
     conversationMessages.value.push({
-      content: '对不起，您不具备领取资格！',
+      content: '對不起，您不具備領取資格！',
       isUser: false
     });
     // 隐藏选项

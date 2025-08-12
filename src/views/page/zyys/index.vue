@@ -16,8 +16,7 @@
           <replyDialog @addButton="handelAddButton"></replyDialog>
         </div>
         <div class="bottom" v-if="addButtonShow">
-          <SimpleWecomRedirect />
-          <LineAddButton />
+          <LineAddButtonFT  :lineList="parentLineList"/>
         </div>
       </div>
     </div>
@@ -27,8 +26,7 @@
 
 
 <script setup>
-import SimpleWecomRedirect from '../../components/SimpleWecomRedirect.vue';
-import LineAddButton from '../../components/LineAddButton.vue';
+import LineAddButtonFT from '../../components/LineAddButtonFT.vue';
 import homeHeader from './components/header.vue';
 import replyDialog from "./components/replyDialog.vue";
 import { ref, onMounted } from "vue";
@@ -39,6 +37,12 @@ const handelAddButton = () => {
   addButtonShow.value = true
 }
 
+
+// line账号
+const parentLineList = [{
+  id:'泰',
+  url: 'https://line.me/ti/p/dZG9cwvMLs',
+}]
 
 // const showPageA = ref(true); // 默认展示A页（审核安全）
 
