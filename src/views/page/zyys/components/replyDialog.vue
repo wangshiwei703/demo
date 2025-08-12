@@ -36,7 +36,7 @@
 
 <script setup>
 import { ref } from 'vue';
-const emit = defineEmits(['addButton']);
+const emit = defineEmits(['addButton', 'scrollToBottom']);
 // 存储所有对话消息
 const conversationMessages = ref([
   { content: '你好！我是養生小助理，完成問題可報名免費中醫養生課', isUser: false },
@@ -130,6 +130,8 @@ const handleOptionSelect = (selectedOption) => {
     // 隐藏选项
     showOptions.value = false;
   }
+
+  emit('scrollToBottom');
 };
 </script>
 
