@@ -82,24 +82,26 @@ const addNewDataShow = ref(false)
 // 添加新数据
 const addNewData = async (val) => {
     try {
-        await base.auth();
-        const rowData = {
-            name: val.name,
-            gender: val.gender,
-            age: val.age,
-            height: val.height,
-            currentWeight: val.currentWeight,
-            targetWeight: val.targetWeight,
-            lineId: val.lineId,
-            phone: val.phone,
-        };
-        const response = await base.appendRow(config.tableName, rowData);
-        // successMsg.value = `添加成功！新记录ID：${response._id}`;
-        if (response._id) {
-            addNewDataShow.value = true
-            showSuccessToast('添加成功');
+        // await base.auth();
+        // const rowData = {
+        //     name: val.name,
+        //     gender: val.gender,
+        //     age: val.age,
+        //     height: val.height,
+        //     currentWeight: val.currentWeight,
+        //     targetWeight: val.targetWeight,
+        //     lineId: val.lineId,
+        //     phone: val.phone,
+        // };
+        // const response = await base.appendRow(config.tableName, rowData);
+        // // successMsg.value = `添加成功！新记录ID：${response._id}`;
+        // if (response._id) {
+        //     addNewDataShow.value = true
+        //     showSuccessToast('添加成功');
             triggerTikTokConversion()
-        }
+        // }
+
+        
         // 刷新列表
         // fetchTableData();
 
