@@ -34,6 +34,11 @@ export default defineConfig((mode, command) => {
         '/.netlify/functions/wecom-proxy': {
           target: 'http://localhost:8888', // Netlify dev服务器地址
           changeOrigin: true
+        },
+        '/seatable-api': {
+          target: 'https://cloud.seatable.cn', // 目标服务器地址，即Seatable API地址
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/seatable-api/, '')
         }
       }
     },

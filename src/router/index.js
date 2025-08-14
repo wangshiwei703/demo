@@ -24,6 +24,15 @@ const routes = [
     }
   },
   {
+    path: '/jfbd',
+    name: 'jfbd',
+    component: () => import('@/views/page/jfbd/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
     path: '/zyys',
     name: 'zyys',
     component: () => import('@/views/page/zyys/index.vue'),
@@ -33,9 +42,18 @@ const routes = [
     }
   },
   {
-     path: '/zycp',
+    path: '/zycp',
     name: 'zycp',
     component: () => import('@/views/page/zycp/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/privacyPolicy',
+    name: 'privacyPolicy',
+    component: () => import('@/views/privacyPolicy.vue'),
     meta: {
       requiresAuth: true,
       keepAlive: true

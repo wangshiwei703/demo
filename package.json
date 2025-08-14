@@ -14,10 +14,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/runtime": "^7.28.2",
     "axios": "^1.6.2",
     "js-cookie": "^3.0.5",
     "qs": "^6.12.1",
     "require": "^2.4.20",
+    "seatable-api": "^1.0.44",
     "vant": "^4.9.21",
     "vue": "^3.3.11",
     "vue-router": "^4.5.1"

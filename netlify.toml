@@ -1,8 +1,18 @@
 [build]
-  command = "npm run build" # 根据实际情况，也可能是vite build等
-  publish = "dist"
+  # 构建命令（根据你的项目实际情况，Vue 项目通常是 npm run build）
+  command = "npm run build" 
+  # 构建输出目录（Vue 项目默认是 dist）
+  publish = "dist"  
 
+# 第一个重定向规则：单页应用路由（保留原有规则）
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# 第二个重定向规则：Seatable API 代理（新增规则）
+[[redirects]]
+  from = "/seatable-api/*"
+  to = "https://cloud.seatable.cn/:splat"
+  status = 200
+  force = true
