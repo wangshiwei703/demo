@@ -82,26 +82,24 @@ const addNewDataShow = ref(false)
 // 添加新数据
 const addNewData = async (val) => {
     try {
-        // await base.auth();
-        // const rowData = {
-        //     name: val.name,
-        //     gender: val.gender,
-        //     age: val.age,
-        //     height: val.height,
-        //     currentWeight: val.currentWeight,
-        //     targetWeight: val.targetWeight,
-        //     lineId: val.lineId,
-        //     phone: val.phone,
-        // };
-        // const response = await base.appendRow(config.tableName, rowData);
-        // // successMsg.value = `添加成功！新记录ID：${response._id}`;
-        // if (response._id) {
-        //     addNewDataShow.value = true
-        //     showSuccessToast('添加成功');
+        await base.auth();
+        const rowData = {
+            name: val.name,
+            gender: val.gender,
+            age: val.age,
+            height: val.height,
+            currentWeight: val.currentWeight,
+            targetWeight: val.targetWeight,
+            lineId: val.lineId,
+            phone: val.phone,
+        };
+        const response = await base.appendRow(config.tableName, rowData);
+        // successMsg.value = `添加成功！新记录ID：${response._id}`;
+        if (response._id) {
+            addNewDataShow.value = true
+            showSuccessToast('添加成功');
             triggerTikTokConversion()
-        // }
-
-        
+        }
         // 刷新列表
         // fetchTableData();
 
@@ -143,19 +141,7 @@ const handleAddLine = async () => {
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
     if (window.ttq) {
-        // window.ttq.track('ClickButton', {
-        //     contents: [
-        //         {
-        //             content_id: 'id',
-        //             content_name: '表单填写成功',
-        //             content_type: 'line',
-        //         }],
-        //     value: 1,
-        //     currency: 'CNY'
-        // });
-
-
-        window.ttq.track('Lead', {
+        window.ttq.track('ClickButton', {
             contents: [
                 {
                     content_id: 'id',
@@ -165,6 +151,18 @@ const triggerTikTokConversion = () => {
             value: 1,
             currency: 'CNY'
         });
+
+
+        // window.ttq.track('Lead', {
+        //     contents: [
+        //         {
+        //             content_id: 'id',
+        //             content_name: '表单填写成功',
+        //             content_type: 'line',
+        //         }],
+        //     value: 1,
+        //     currency: 'CNY'
+        // });
     }
 };
 
