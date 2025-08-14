@@ -12,7 +12,11 @@
 
 # 第二个重定向规则：Seatable API 代理（新增规则）
 [[redirects]]
-  from = "/seatable-api/*"
-  to = "https://cloud.seatable.cn/:splat"
-  status = 200
-  force = true
+  from = "/seatable-api/*"  # 匹配前端请求的路径
+  to = "https://cloud.seatable.cn/:splat"  # 转发到实际API（替换为真实地址）
+  status = 200  # 必须为200（透明代理）
+  force = true  # 强制覆盖默认行为
+  headers = {
+    "Access-Control-Allow-Origin" = "*",  # 允许跨域
+    "Access-Control-Allow-Methods" = "GET, POST, PUT, DELETE"
+  }
