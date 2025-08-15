@@ -1,10 +1,13 @@
 <template>
     <div class="ab-container">
         <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
-        <div v-if="showPageA" class="page-a">
-            <img src="@image/jfcp-header.png" style="width: 100%;height: 100%;" />
+        <div v-if="showPageA" class="page-a" style="padding-bottom: 60px;">
+            <img src="@image/jfcp-header.png" class="a-image" style="width: 100%;height: 100%;" />
             <div class="bottom" style="display: flex;justify-content: space-around;">
                 <LineAddButton />
+            </div>
+            <div class="seatable-container-form">
+                <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
             </div>
         </div>
 
@@ -189,9 +192,22 @@ function judgePage() {
 
 <style scoped>
 /* 样式保持不变 */
+.ab-container,
 .seatable-container {
     width: 100%;
     background: #f7f8fa;
+}
+
+.a-image {
+    width: 100%;
+    display: block;
+    /* 解决inline-block带来的换行间隙 */
+    margin: 0;
+    /* 清除默认外边距 */
+    padding: 0;
+    /* 清除默认内边距 */
+    border: none;
+    /* 某些浏览器会给图片加默认边框 */
 }
 </style>
 
