@@ -35,14 +35,14 @@
                 </van-button>
             </div>
         </van-form>
-        <div class="seatable-container-privacyPolicy" @click="handelPrivacyPolicy">プライバシー保護ポリシー</div>
+        <div class="seatable-container-privacyPolicy" @click="handelPrivacyPolicy">&gt;&gt;&gt;プライバシー保護ポリシー&lt;&lt;&lt;</div>
     </div>
 </template>
 
 <script setup>
 import { reactive } from "vue";
 import { useRouter, useRoute } from 'vue-router'
-const router = useRouter() 
+const router = useRouter()
 const emit = defineEmits(['addNewData']);
 
 const props = defineProps({
@@ -84,8 +84,7 @@ const handelPrivacyPolicy = () => {
 
 
 <style lang="css">
-.seatable-container {
-}
+.seatable-container {}
 
 .header-image {
     width: 100%;
@@ -103,8 +102,8 @@ const handelPrivacyPolicy = () => {
     color: #1989fa;
     font-size: 12px;
     text-align: center;
-    margin-bottom: 10px;
     cursor: pointer;
+    margin-bottom: 16px;
 }
 
 .van-field__control {

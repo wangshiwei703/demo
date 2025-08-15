@@ -1,5 +1,5 @@
 <template>
-    <div class="seatable-container">
+    <div class="seatable-container" style="padding-bottom: 60px;">
         <div class="seatable-container-header">
             <homeHeader></homeHeader>
         </div>
@@ -124,14 +124,6 @@ onMounted(() => {
 .seatable-container {
     width: 100%;
     background: #f7f8fa;
-    padding-bottom: 30px;
-}
-
-
-.custom {
-    width: 80px;
-    font-size: 14px;
-    text-align: center;
 }
 
 </style>
