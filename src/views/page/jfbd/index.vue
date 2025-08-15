@@ -93,8 +93,8 @@ const addNewData = async (val) => {
             lineId: val.lineId,
             phone: val.phone,
         };
-        
-        base.baseURL = '/seatable-api'
+
+        base.dtableServer = '/seatable-api/api-gateway/'
         console.log(base);
 
         const response = await base.appendRow(config.tableName, rowData);
