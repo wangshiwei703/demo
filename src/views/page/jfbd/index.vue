@@ -1,20 +1,30 @@
 <template>
-    <div class="seatable-container" style="padding-bottom: 60px;">
-        <div class="seatable-container-header">
-            <homeHeader></homeHeader>
-        </div>
-        <div class="seatable-container-form">
-            <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
-        </div>
-        <div class="seatable-container-header">
-            <homeHeader2></homeHeader2>
+    <div class="ab-container">
+        <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
+        <div v-if="showPageA" class="page-a">
+            <img src="@image/jfcp-header.png" style="width: 100%;height: 100%;" />
+            <div class="bottom" style="display: flex;justify-content: space-around;">
+                <LineAddButton />
+            </div>
         </div>
 
-        <div class="seatable-container-form">
-            <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
-        </div>
+        <div v-else class="seatable-container" style="padding-bottom: 60px;">
+            <div class="seatable-container-header">
+                <homeHeader></homeHeader>
+            </div>
+            <div class="seatable-container-form">
+                <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
+            </div>
+            <div class="seatable-container-header">
+                <homeHeader2></homeHeader2>
+            </div>
 
-        <ScrollButtons></ScrollButtons>
+            <div class="seatable-container-form">
+                <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
+            </div>
+
+            <ScrollButtons></ScrollButtons>
+        </div>
     </div>
 </template>
 
@@ -113,10 +123,68 @@ const triggerTikTokConversion = () => {
 };
 
 
-// 页面加载时自动获取数据
+// 页面状态
+const showPageA = ref(true);
+// 参数存储（用于页面展示调试）
+const utmSource = ref('');
+const utmMedium = ref('');
+const utmCampaign = ref('');
+const ttclid = ref('');
+
 onMounted(() => {
-    // fetchTableData();
+  // 解析URL所有参数
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // 提取三个UTM参数和ttclid
+  utmSource.value = urlParams.get('utm_source') || '';
+  utmMedium.value = urlParams.get('utm_medium') || '';
+  utmCampaign.value = urlParams.get('utm_campaign') || '';
+  ttclid.value = urlParams.get('ttclid') || '';
+
+  // 执行判断逻辑
+  judgePage();
 });
+
+// 核心判断逻辑：联合检测三个UTM参数
+function judgePage() {
+  // 辅助函数：判断参数是否为宏变量格式（__XXX__）
+  const isMacro = (param) => param.startsWith('__') && param.endsWith('__');
+
+  // 规则1：三个UTM参数均为宏变量 → 审核场景（A页面）
+  const allAreMacro = isMacro(utmSource.value) &&
+    isMacro(utmMedium.value) &&
+    isMacro(utmCampaign.value);
+
+  // 规则2：UTM参数为_test_且有ttclid → 测试场景（B页面）
+  const isTestScene = utmSource.value === '_test_' &&
+    utmMedium.value === '_test_' &&
+    utmCampaign.value === '_test_' &&
+    !!ttclid.value;
+
+  // 规则3：UTM参数已替换为真实值且有ttclid → 真实用户（B页面）
+  const isRealUser = !allAreMacro &&
+    !isTestScene &&
+    !!ttclid.value &&
+    utmSource.value !== '';
+
+  // 页面切换
+  if (allAreMacro) {
+    showPageA.value = true;
+  } else if (isTestScene || isRealUser) {
+    showPageA.value = false;
+  } else {
+    // 未知场景默认A页面（安全兜底）
+    showPageA.value = true;
+  }
+
+  // 调试日志
+  console.log('判断结果：', {
+    allAreMacro,
+    isTestScene,
+    isRealUser,
+    showPageA: showPageA.value
+  });
+}
 </script>
 
 <style scoped>
@@ -125,7 +193,6 @@ onMounted(() => {
     width: 100%;
     background: #f7f8fa;
 }
-
 </style>
 
 
