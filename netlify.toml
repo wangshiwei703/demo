@@ -4,7 +4,7 @@
 
 # 先匹配带api-gateway的请求（如appendRow）
 [[redirects]]
-  from = "/seatable-api/api-gateway/*"
+  from = "/api-gateway/*"
   to = "https://cloud.seatable.cn/api-gateway/:splat"
   status = 200
   force = true

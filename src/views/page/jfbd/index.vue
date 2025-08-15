@@ -38,8 +38,6 @@ const config = {
 
 // 初始化Seatable实例
 const base = new Base(config);
-// 显式设置dtableServer路径（关键修改）
-base.dtableServer = '/seatable-api/api-gateway';
 
 
 // 状态管理
