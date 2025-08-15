@@ -3,18 +3,17 @@
         <div class="seatable-container-header">
             <homeHeader></homeHeader>
         </div>
+        <div class="seatable-container-form">
+            <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
+        </div>
+        <div class="seatable-container-header">
+            <homeHeader2></homeHeader2>
+        </div>
 
         <div class="seatable-container-form">
             <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
         </div>
 
-        <div class="seatable-container-bubble">
-            <van-floating-bubble axis="xy" magnetic="x" @click="handleAddLine">
-                <template #default>
-                    <img class="seatable-container-bubble-img" src="@image/linelogo.png" />
-                </template>
-            </van-floating-bubble>
-        </div>
         <ScrollButtons></ScrollButtons>
     </div>
 </template>
@@ -23,6 +22,7 @@
 import { ref, onMounted } from 'vue';
 import formComponent from './components/form.vue'
 import homeHeader from './components/header.vue'
+import homeHeader2 from './components/header2.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { showSuccessToast, showFailToast } from 'vant';
 import axios from 'axios';
@@ -43,18 +43,16 @@ const addNewData = async (val) => {
         };
 
         const response = await axios.post('https://api.mingdao.com/workflow/hooks/Njg5ZWFlM2JmMzdmM2E2ZjU1MzZkYzk0', rowData);
-
-        console.log(response);
         
         if (response.status == 200) {
             addNewDataShow.value = true
-            showSuccessToast('添加成功');
+            showSuccessToast('追加成功しました');
             triggerTikTokConversion()
         }
 
     } catch (err) {
         console.error('添加数据错误详情：', err);
-        showFailToast('添加数据错误');
+        showFailToast('データの追加に失敗しました');
     }
 };
 
@@ -129,9 +127,6 @@ onMounted(() => {
     background: #f7f8fa;
 }
 
-.seatable-container-bubble-img {
-    width: 70%;
-}
 
 .custom {
     width: 80px;
