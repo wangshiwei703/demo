@@ -141,19 +141,7 @@ const handleAddLine = async () => {
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
     if (window.ttq) {
-        window.ttq.track('ClickButton', {
-            contents: [
-                {
-                    content_id: 'id',
-                    content_name: '表单填写成功',
-                    content_type: 'line',
-                }],
-            value: 1,
-            currency: 'CNY'
-        });
-
-
-        // window.ttq.track('Lead', {
+        // window.ttq.track('ClickButton', {
         //     contents: [
         //         {
         //             content_id: 'id',
@@ -163,6 +151,18 @@ const triggerTikTokConversion = () => {
         //     value: 1,
         //     currency: 'CNY'
         // });
+
+
+        window.ttq.track('Lead', {
+            contents: [
+                {
+                    content_id: 'id',
+                    content_name: '表单填写成功',
+                    content_type: 'line',
+                }],
+            value: 1,
+            currency: 'CNY'
+        });
     }
 };
 
