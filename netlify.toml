@@ -2,13 +2,11 @@
   command = "npm run build" 
   publish = "dist"  
 
-# 单页应用路由（放最后，避免覆盖 API 代理）
+# 单页应用路由
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  # 低优先级：通配符规则放最后
-  force = true  
 
 # Seatable API 代理（放通配符规则前）
 [[redirects]]
