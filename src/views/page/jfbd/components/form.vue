@@ -2,9 +2,9 @@
     <div class="seatable-container">
         <van-form @submit="handelSubmit" ref="form">
             <van-cell-group inset>
-                <van-field v-model="fromData.name" name="name" label="ニックネーム" placeholder="ニックネームを入力してください"
+                <van-field v-model="fromData.name" name="name" size="large" label="ニックネーム" placeholder="ニックネームを入力してください"
                     :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
-                <van-field name="gender" label="性別">
+                <van-field name="gender" label="性別" size="large" >
                     <template #input>
                         <van-radio-group v-model="fromData.gender" direction="horizontal">
                             <van-radio name="男">男</van-radio>
@@ -12,16 +12,16 @@
                         </van-radio-group>
                     </template>
                 </van-field>
-                <van-field v-model="fromData.age" name="age" type="number" label="年齢" placeholder="年齢を入力してください"
+                <van-field v-model="fromData.age" name="age" size="large" type="number" label="年齢" placeholder="年齢を入力してください"
                     :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
-                <van-field v-model="fromData.height" name="height" type="number" label="身長" placeholder="身長を入力してください" />
-                <van-field v-model="fromData.currentWeight" name="currentWeight" type="number" label="現在の体重"
+                <van-field v-model="fromData.height" name="height" size="large" type="number" label="身長" placeholder="身長を入力してください" />
+                <van-field v-model="fromData.currentWeight" name="currentWeight" size="large" type="number" label="現在の体重"
                     placeholder="現在の体重を入力してください" />
-                <van-field v-model="fromData.targetWeight" name="targetWeight" type="number" label="目標体重"
+                <van-field v-model="fromData.targetWeight" name="targetWeight" size="large" type="number" label="目標体重"
                     placeholder="目標体重を入力してください" />
-                <van-field v-model="fromData.lineId" name="lineId" label="LINE ID" placeholder="LINE IDを入力してください"
+                <van-field v-model="fromData.lineId" name="lineId" size="large" label="LINE ID" placeholder="LINE IDを入力してください"
                     :rules="[{ validator: validateWeight, message: 'LINE IDと電話番号は少なくとも一方を入力してください' }]" />
-                <van-field v-model="fromData.phone" name="phone" label="電話番号" placeholder="電話番号を入力してください"
+                <van-field v-model="fromData.phone" name="phone" size="large" label="電話番号" placeholder="電話番号を入力してください"
                     :rules="[{ validator: validateWeight, message: 'LINE IDと電話番号は少なくとも一方を入力してください' }]" />
             </van-cell-group>
             <div style="margin: 16px;">
@@ -69,8 +69,12 @@ const handelSubmit = () => {
 </script>
 
 
-<style lang="css" scoped>
+<style lang="css">
 .seatable-container {
     margin: 20px 0px;
+}
+
+.van-field__control {
+    font-size: 16px;
 }
 </style>
