@@ -93,6 +93,10 @@ const addNewData = async (val) => {
             lineId: val.lineId,
             phone: val.phone,
         };
+        
+        base.baseURL = '/seatable-api'
+        console.log(base);
+
         const response = await base.appendRow(config.tableName, rowData);
         // successMsg.value = `添加成功！新记录ID：${response._id}`;
         if (response._id) {
