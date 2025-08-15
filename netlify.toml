@@ -2,28 +2,6 @@
   command = "npm run build" 
   publish = "dist"  
 
-# 先匹配带api-gateway的请求（如appendRow）
-[[redirects]]
-  from = "/api-gateway/*"
-  to = "https://cloud.seatable.cn/api-gateway/:splat"
-  status = 200
-  force = true
-  [redirects.headers]
-    "Access-Control-Allow-Origin" = "*"
-    "Access-Control-Allow-Methods" = "GET, POST, PUT, DELETE, OPTIONS"
-    "Access-Control-Allow-Headers" = "Authorization, Content-Type, Cookie"
-
-# 再匹配不带api-gateway的请求（如auth）
-[[redirects]]
-  from = "/seatable-api/*"
-  to = "https://cloud.seatable.cn/:splat"
-  status = 200
-  force = true
-  [redirects.headers]
-    "Access-Control-Allow-Origin" = "*"
-    "Access-Control-Allow-Methods" = "GET, POST, PUT, DELETE, OPTIONS"
-    "Access-Control-Allow-Headers" = "Authorization, Content-Type, Cookie"
-
 # 单页应用路由
 [[redirects]]
   from = "/*"

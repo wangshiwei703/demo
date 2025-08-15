@@ -21,69 +21,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { Base } from 'seatable-api';
 import formComponent from './components/form.vue'
 import homeHeader from './components/header.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { showSuccessToast, showFailToast } from 'vant';
-
-// 配置信息 - 关键修改：使用相对路径代理
-const config = {
-    // 开发环境：/seatable-api 会被代理到https://cloud.seatable.cn
-    // 生产环境：Netlify会通过netlify.toml转发请求
-    server: '/seatable-api',
-    APIToken: 'aef45e994553fc21a959eca4fae02af4d9235441', // 你的API令牌
-    tableName: 'Table1' // 表格显示名称
-};
-
-// 初始化Seatable实例
-const base = new Base(config);
-
-
-// 状态管理
-// const tableData = ref([]);
-// const loading = ref(false);
-// const error = ref('');
-// const successMsg = ref('');
-
-// 格式化日期
-const formatDate = (dateString) => {
-    if (!dateString) return '';
-    const date = new Date(dateString);
-    return date.toLocaleString();
-};
-
-// // 获取数据列表
-// const fetchTableData = async () => {
-//     loading.value = true;
-//     error.value = '';
-//     successMsg.value = '';
-
-//     try {
-//         await base.auth();
-
-//         const response = await base.listRows(config.tableName);
-
-//         tableData.value = response.map(row => ({
-//             _id: row._id,
-//             名称: row.名称,
-//             _ctime: row._ctime,
-//         }));
-
-//     } catch (err) {
-//         error.value = `获取数据失败：${err.message || '未知错误'}`;
-//         console.error('获取数据错误详情：', err);
-//     } finally {
-//         loading.value = false;
-//     }
-// };
+import axios from 'axios';
 
 // 添加数据显隐
 const addNewDataShow = ref(false)
-// 添加新数据
 const addNewData = async (val) => {
     try {
-        await base.auth();
         const rowData = {
             name: val.name,
             gender: val.gender,
@@ -95,15 +42,15 @@ const addNewData = async (val) => {
             phone: val.phone,
         };
 
-        const response = await base.appendRow(config.tableName, rowData);
-        // successMsg.value = `添加成功！新记录ID：${response._id}`;
-        if (response._id) {
+        const response = await axios.post('https://api.mingdao.com/workflow/hooks/Njg5ZWFlM2JmMzdmM2E2ZjU1MzZkYzk0', rowData);
+
+        console.log(response);
+        
+        if (response.status == 200) {
             addNewDataShow.value = true
             showSuccessToast('添加成功');
             triggerTikTokConversion()
         }
-        // 刷新列表
-        // fetchTableData();
 
     } catch (err) {
         console.error('添加数据错误详情：', err);
