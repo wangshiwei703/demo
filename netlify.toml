@@ -2,19 +2,19 @@
   command = "npm run build" 
   publish = "dist"  
 
-# 单页应用路由
+# 单页应用路由（放最后，避免覆盖 API 代理）
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  # 低优先级：通配符规则放最后
+  force = true  
 
-# Seatable API 代理
+# Seatable API 代理（放通配符规则前）
 [[redirects]]
-  from = "/seatable-api/api/v2.1/dtable/app-access-token/"  # 精确匹配路径
-  to = "https://cloud.seatable.cn/api/v2.1/dtable/app-access-token/"  # 完整转发地址
+  from = "/seatable-api/api/v2.1/dtable/app-access-token/"  
+  to = "https://cloud.seatable.cn/api/v2.1/dtable/app-access-token/"  
   status = 200
-  force = true  # 强制覆盖
-  headers = {
-    "Access-Control-Allow-Origin" = "*",
-    "Access-Control-Allow-Methods" = "GET"  # 与请求方法一致（你的请求是 GET）
-  }
+  force = true  
+  # 单行 headers，避免解析歧义
+  headers = { "Access-Control-Allow-Origin" = "*", "Access-Control-Allow-Methods" = "GET" }
