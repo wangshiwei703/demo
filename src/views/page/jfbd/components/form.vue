@@ -35,11 +35,14 @@
                 </van-button>
             </div>
         </van-form>
+        <div class="seatable-container-privacyPolicy" @click="handelPrivacyPolicy">プライバシー保護ポリシー</div>
     </div>
 </template>
 
 <script setup>
 import { reactive } from "vue";
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter() 
 const emit = defineEmits(['addNewData']);
 
 const props = defineProps({
@@ -71,6 +74,12 @@ const handelSubmit = () => {
     emit('addNewData', fromData)
 }
 
+// 跳转隐私政策
+const handelPrivacyPolicy = () => {
+    router.push({
+        path: '/privacyPolicy'
+    })
+}
 </script>
 
 
@@ -88,6 +97,14 @@ const handelSubmit = () => {
     /* 清除默认内边距 */
     border: none;
     /* 某些浏览器会给图片加默认边框 */
+}
+
+.seatable-container-privacyPolicy {
+    color: #1989fa;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .van-field__control {

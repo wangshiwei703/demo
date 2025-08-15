@@ -6,7 +6,6 @@
         <div class="seatable-container-form">
             <formComponent @addNewData="addNewData" :addNewDataShow="addNewDataShow"></formComponent>
         </div>
-        <div class="seatable-container-privacyPolicy" @click="handelPrivacyPolicy">プライバシー保護ポリシー</div>
         <div class="seatable-container-header">
             <homeHeader2></homeHeader2>
         </div>
@@ -26,9 +25,7 @@ import homeHeader from './components/header.vue'
 import homeHeader2 from './components/header2.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { showSuccessToast, showFailToast } from 'vant';
-import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios';
-const router = useRouter() 
 // 添加数据显隐
 const addNewDataShow = ref(false)
 const addNewData = async (val) => {
@@ -116,13 +113,6 @@ const triggerTikTokConversion = () => {
 };
 
 
-// 跳转隐私政策
-const handelPrivacyPolicy = () => {
-    router.push({
-        path: '/privacyPolicy'
-    })
-}
-
 // 页面加载时自动获取数据
 onMounted(() => {
     // fetchTableData();
@@ -134,6 +124,7 @@ onMounted(() => {
 .seatable-container {
     width: 100%;
     background: #f7f8fa;
+    padding-bottom: 30px;
 }
 
 
@@ -143,13 +134,6 @@ onMounted(() => {
     text-align: center;
 }
 
-.seatable-container-privacyPolicy {
-    color: #1989fa;
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
 </style>
 
 
