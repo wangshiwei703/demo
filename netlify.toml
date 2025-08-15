@@ -10,8 +10,11 @@
 
 # Seatable API 代理
 [[redirects]]
-  from = "/seatable-api/*"  
-  to = "https://cloud.seatable.cn/:splat"  
-  status = 200  
-  force = true  
-  headers = { "Access-Control-Allow-Origin" = "*", "Access-Control-Allow-Methods" = "GET, POST, PUT, DELETE" }
+  from = "/seatable-api/api/v2.1/dtable/app-access-token/"  # 精确匹配路径
+  to = "https://cloud.seatable.cn/api/v2.1/dtable/app-access-token/"  # 完整转发地址
+  status = 200
+  force = true  # 强制覆盖
+  headers = {
+    "Access-Control-Allow-Origin" = "*",
+    "Access-Control-Allow-Methods" = "GET"  # 与请求方法一致（你的请求是 GET）
+  }
