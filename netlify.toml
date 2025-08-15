@@ -2,17 +2,20 @@
   command = "npm run build" 
   publish = "dist"  
 
-# 单页应用路由
+# 1. API 代理规则（必须放在单页路由前面，优先匹配）
+[[redirects]]
+  from = "/seatable-api/*"  # 匹配所有以 /seatable-api/ 开头的请求
+  to = "https://cloud.seatable.cn/:splat"  # 转发到目标 API
+  status = 200  # 透明代理（保留原始响应状态码）
+  force = true  # 强制覆盖其他规则
+  # 跨域配置（确保请求头能正常传递）
+  [redirects.headers]
+    "Access-Control-Allow-Origin" = "*"
+    "Access-Control-Allow-Methods" = "GET, POST, PUT, DELETE, OPTIONS"
+    "Access-Control-Allow-Headers" = "Authorization, Content-Type, Cookie"
+
+# 2. 单页应用路由（放后面，低优先级）
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Seatable API 代理（放通配符规则前）
-[[redirects]]
-  from = "/seatable-api/api/v2.1/dtable/app-access-token/"  
-  to = "https://cloud.seatable.cn/api/v2.1/dtable/app-access-token/"  
-  status = 200
-  force = true  
-  # 单行 headers，避免解析歧义
-  headers = { "Access-Control-Allow-Origin" = "*", "Access-Control-Allow-Methods" = "GET" }

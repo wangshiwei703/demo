@@ -184,11 +184,11 @@ onMounted(() => {
     width: 70%;
 }
 
- .custom {
+.custom {
     width: 80px;
     font-size: 14px;
     text-align: center;
-  }
+}
 </style>
 
 
