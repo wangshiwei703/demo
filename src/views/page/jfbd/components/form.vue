@@ -25,9 +25,9 @@
                     placeholder="目標体重を入力してください" />
                 <van-field v-model="fromData.lineId" name="lineId" size="large" label="LINE ID"
                     placeholder="LINE IDを入力してください"
-                    :rules="[{ validator: validateWeight, message: 'LINE IDと電話番号は少なくとも一方を入力してください' }]" />
+                    :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
                 <van-field v-model="fromData.phone" name="phone" size="large" label="電話番号" placeholder="電話番号を入力してください"
-                    :rules="[{ validator: validateWeight, message: 'LINE IDと電話番号は少なくとも一方を入力してください' }]" />
+                    :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
             </van-cell-group>
             <div style="margin: 16px;">
                 <van-button round block type="primary" :disabled="addNewDataShow" native-type="submit">
@@ -63,12 +63,6 @@ const fromData = reactive({
     phone: '',
 });
 
-const validateWeight = () => {
-    if (fromData.lineId || fromData.phone) {
-        return true
-    }
-    return false
-}
 
 const handelSubmit = () => {
     emit('addNewData', fromData)
