@@ -16,7 +16,7 @@
                     </template>
                 </van-field>
                 <van-field v-model="fromData.age" name="age" size="large" type="number" label="年齢"
-                    placeholder="年齢を入力してください" :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
+                    placeholder="年齢を入力してください" :rules="[{ required: true, message: '正しい内容を入力してください' }, { validator: asyncValidator, message: '年齢は 18 歳以上である必要があります。' }]" />
                 <van-field v-model="fromData.height" name="height" size="large" type="number" label="身長"
                     placeholder="身長を入力してください" />
                 <van-field v-model="fromData.currentWeight" name="currentWeight" size="large" type="number"
@@ -24,8 +24,7 @@
                 <van-field v-model="fromData.targetWeight" name="targetWeight" size="large" type="number" label="目標体重"
                     placeholder="目標体重を入力してください" />
                 <van-field v-model="fromData.lineId" name="lineId" size="large" label="LINE ID"
-                    placeholder="LINE IDを入力してください"
-                    :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
+                    placeholder="LINE IDを入力してください" :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
                 <van-field v-model="fromData.phone" name="phone" size="large" label="電話番号" placeholder="電話番号を入力してください"
                     :rules="[{ required: true, message: '正しい内容を入力してください' }]" />
             </van-cell-group>
@@ -35,7 +34,8 @@
                 </van-button>
             </div>
         </van-form>
-        <div class="seatable-container-privacyPolicy" @click="handelPrivacyPolicy">&gt;&gt;&gt;プライバシー保護ポリシー&lt;&lt;&lt;</div>
+        <div class="seatable-container-privacyPolicy" @click="handelPrivacyPolicy">&gt;&gt;&gt;プライバシー保護ポリシー&lt;&lt;&lt;
+        </div>
     </div>
 </template>
 
@@ -62,6 +62,12 @@ const fromData = reactive({
     lineId: '',
     phone: '',
 });
+
+// 校验
+const asyncValidator = (val) => {
+    if (val >= 18) return true
+    return false
+}
 
 
 const handelSubmit = () => {
