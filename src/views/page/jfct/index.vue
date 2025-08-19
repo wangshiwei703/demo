@@ -47,6 +47,9 @@ import ScrollButtons from '../../components/ScrollButtons.vue';
 const lineList = [{
     id: '1',
     url: 'https://lin.ee/VxNWJyq',
+},{
+    id: '2',
+    url: 'https://lin.ee/M6Fvxka'
 }]
 
 // 随机选择一个企业微信账号
