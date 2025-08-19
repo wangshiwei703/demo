@@ -9,11 +9,12 @@ const routes = [
   {
     path: '/',
     redirect: '/jfcp',
-    meta: {
-      requiresAuth: true,
-      keepAlive: true
-    }
+        meta: {
+          requiresAuth: true,
+          keepAlive: true
+        }
   },
+
   {
     path: '/jfcp',
     name: 'jfcp',
@@ -27,6 +28,15 @@ const routes = [
     path: '/jfbd',
     name: 'jfbd',
     component: () => import('@/views/page/jfbd/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/jfct',
+    name: 'jfct',
+    component: () => import('@/views/page/jfct/index.vue'),
     meta: {
       requiresAuth: true,
       keepAlive: true
