@@ -27,9 +27,9 @@
 
             <ScrollButtons></ScrollButtons>
 
-            <van-floating-bubble axis="xy" icon="chat" magnetic="x" @click="handleAddLine" >
+            <van-floating-bubble v-model:offset="bubbleOffset" axis="y" icon="chat" magnetic="x" @click="handleAddLine">
                 <template #default>
-                    <img src="@image/linelogo.png" style="width: 35px;"/>
+                    <img src="@image/linelogo.png" style="width: 35px;" />
                 </template>
             </van-floating-bubble>
         </div>
@@ -42,12 +42,12 @@ import LineAddButton from '../../components/LineAddButtonRY2.vue';
 import homeHeader from './components/header.vue'
 import homeHeader2 from './components/header2.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
-
+import { useWindowSize } from '@vant/use';
 
 const lineList = [{
     id: '1',
     url: 'https://lin.ee/VxNWJyq',
-},{
+}, {
     id: '2',
     url: 'https://lin.ee/M6Fvxka'
 }]
@@ -119,6 +119,11 @@ onMounted(() => {
 
     // 执行判断逻辑
     judgePage();
+
+    // 默认高度
+    const { width, height } = useWindowSize();
+    bubbleOffset.value.y = height.value - 260
+    bubbleOffset.value.x = width.value - 72
 });
 
 // 核心判断逻辑：联合检测三个UTM参数
@@ -161,6 +166,9 @@ function judgePage() {
         showPageA: showPageA.value
     });
 }
+
+
+const bubbleOffset = ref({ x: 0, y: 0 });
 </script>
 
 <style scoped>
