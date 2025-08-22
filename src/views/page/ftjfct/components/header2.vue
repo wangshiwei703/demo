@@ -1,6 +1,6 @@
 <template>
     <div class="homg-header1">
-        <img src="@image/ftbdheader/3.gif" />
+        <img src="@image/ftbdheader/3.png" />
         <img src="@image/ftbdheader/4.jpg" />
         <img src="@image/ftbdheader/5.gif" />
         <img src="@image/ftbdheader/6.jpg" />
