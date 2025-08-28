@@ -13,7 +13,7 @@ const routes = [
           requiresAuth: true,
           keepAlive: true
         }
-        },
+  },
 
   {
     path: '/jfcp',
@@ -46,6 +46,24 @@ const routes = [
     path: '/ftjfct',
     name: 'ftjfct',
     component: () => import('@/views/page/ftjfct/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/ftjfct2',
+    name: 'ftjfct2',
+    component: () => import('@/views/page/ftjfct2/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+   {
+    path: '/ftjfct3',
+    name: 'ftjfct3',
+    component: () => import('@/views/page/ftjfct3/index.vue'),
     meta: {
       requiresAuth: true,
       keepAlive: true
