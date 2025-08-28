@@ -50,21 +50,6 @@ const lineList = [{
 }, {
     id: '@426qqpel',
     url: 'https://lin.ee/Ul7ph3y'
-}, {
-    id: 'nuknt',
-    url: 'https://line.me/ti/p/wSCsGfNLsT'
-}, {
-    id: 'ketuc',
-    url: 'https://line.me/ti/p/vB39SrU6j2'
-}, {
-    id: 'setyx',
-    url: 'https://line.me/ti/p/ujEv-LJeR2'
-}, {
-    id: 'nutkx',
-    url: 'https://line.me/ti/p/nG_rQ_KHf3'
-}, {
-    id: 'xxtur',
-    url: 'https://line.me/ti/p/xKsYUzXxtu'
 }]
 
 // 随机选择一个企业微信账号
