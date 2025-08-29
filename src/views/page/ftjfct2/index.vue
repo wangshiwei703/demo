@@ -2,7 +2,7 @@
     <div class="ab-container">
         <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
         <div v-if="showPageA" class="page-a" style="padding-bottom: 60px;">
-            <img src="@image/ftjfcp-header.png" class="a-image" style="width: 100%;height: 100%;" />
+            <img src="@image/ftjfct2A.jpg" class="a-image" style="width: 100%;height: 100%;" />
             <div class="bottom" style="display: flex;justify-content: space-around;">
                 <LineAddButton :lineList="lineList" />
             </div>
