@@ -1,8 +1,32 @@
 <template>
     <div class="homg-header1">
         <img src="@image/ft/1.jpg" />
-        <img src="@image/ft/2.jpg" />
-        <img src="@image/ft/4.jpg" />
+        <img src="@image/ftjfct3/2.jpg" />
+        <img src="@image/ftjfct3/4.jpg" />
+        <img src="@image/ftjfct3/5.jpg" />
+        <img src="@image/ftjfct3/6.jpg" />
+        <img src="@image/ftjfct3/7.jpg" />
+        <img src="@image/ftjfct3/8.jpg" />
+        <img src="@image/ftjfct3/9.gif" />
+        <img src="@image/ftjfct3/10.jpg" />
+        <img src="@image/ftjfct3/11.jpg" />
+        <img src="@image/ftjfct3/12.jpg" />
+        <img src="@image/ftjfct3/13.jpg" />
+        <img src="@image/ftjfct3/14.jpg" />
+        <img src="@image/ftjfct3/15.jpg" />
+        <img src="@image/ftjfct3/16.jpg" />
+        <img src="@image/ftjfct3/17.jpg" />
+        <img src="@image/ftjfct3/18.jpg" />
+        <img src="@image/ftjfct3/19.jpg" />
+        <img src="@image/ftjfct3/20.jpg" />
+        <img src="@image/ftjfct3/21.jpg" />
+        <img src="@image/ftjfct3/22.jpg" />
+        <img src="@image/ftjfct3/23.jpg" />
+        <img src="@image/ftjfct3/24.jpg" />
+        <img src="@image/ftjfct3/25.jpg" />
+        <img src="@image/ftjfct3/26.jpg" />
+        <img src="@image/ftjfct3/27.jpg" />
+        <img src="@image/ftjfct3/28.jpg" />
     </div>
 </template>
 
