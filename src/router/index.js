@@ -70,6 +70,15 @@ const routes = [
     }
   },
   {
+    path: '/ftsm',
+    name: 'ftsm',
+    component: () => import('@/views/page/ftsm/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
     path: '/zyys',
     name: 'zyys',
     component: () => import('@/views/page/zyys/index.vue'),
