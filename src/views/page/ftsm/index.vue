@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import LineAddButton from '../../components/LineAddButtonFT4.vue';
+import LineAddButton from '../../components/LineAddButtonFT5.vue';
 import homeHeader from './components/header.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { useWindowSize } from '@vant/use';
