@@ -1,3 +1,4 @@
+<!-- fb减肥投流 -->
 <template>
     <div class="ab-container">
         <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
@@ -80,7 +81,7 @@ const triggerTikTokConversion = () => {
 
 
 // 页面状态
-const showPageA = ref(true);
+const showPageA = ref(false);
 
 onMounted(() => {
     // 默认高度
