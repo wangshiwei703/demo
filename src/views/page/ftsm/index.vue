@@ -35,7 +35,7 @@ import LineAddButton from '../../components/LineAddButtonFT5.vue';
 import homeHeader from './components/header.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { useWindowSize } from '@vant/use';
-
+document.title = '科學助眠服務中心'
 const lineList = [{
     id: '@890gbhyh',
     url: 'https://lin.ee/BDAt3fC',
@@ -64,29 +64,8 @@ const handleAddLine = async () => {
 
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
-    if (window.ttq) {
-        window.ttq.track('ClickButton', {
-            contents: [
-                {
-                    content_id: 'id',
-                    content_name: '添加line',
-                    content_type: 'line',
-                }],
-            value: 1,
-            currency: 'CNY'
-        });
-
-
-        // window.ttq.track('Lead', {
-        //     contents: [
-        //         {
-        //             content_id: 'id',
-        //             content_name: '表单填写成功',
-        //             content_type: 'line',
-        //         }],
-        //     value: 1,
-        //     currency: 'CNY'
-        // });
+    if (window.fbq) {
+        window.fbq('track', 'CompleteRegistration');
     }
 };
 

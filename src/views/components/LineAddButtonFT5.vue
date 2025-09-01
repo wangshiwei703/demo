@@ -31,7 +31,7 @@ const handleAddLine = async () => {
   try {
     const lineObj = selectRandomWecom()
     console.log(lineObj);
-    
+
     // 1. 打开LINE添加页面
     window.open(lineObj.url, '_blank');
     // window.location.href = 'https://line.me/ti/p/dZG9cwvMLs';
@@ -43,21 +43,8 @@ const handleAddLine = async () => {
 
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
-  if (window.ttq) {
-    window.ttq.track('ClickButton', {
-      contents: [
-        {
-          content_id: 'lineId',
-          content_name: 'Line添加成功',
-          content_type: 'line',
-        }],
-      value: 1,
-      currency: 'CNY'
-    }, {
-      event_id: generateEventId()
-    });
-
-    console.log('TikTok Pixel转化事件已触发');
+  if (window.fbq) {
+    window.fbq('track', 'CompleteRegistration');
   }
 };
 
@@ -71,8 +58,9 @@ const generateEventId = () => {
 </script>
 
 <style scoped lang="less">
-.line-add-container{
+.line-add-container {
   text-align: center;
+
   img {
     width: 100%;
   }
