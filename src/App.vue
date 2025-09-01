@@ -12,5 +12,7 @@ import { RouterView } from 'vue-router'
 .vite-vue3-template-app{
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>

@@ -36,6 +36,8 @@ import homeHeader from './components/header.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { useWindowSize } from '@vant/use';
 
+document.title = '减肥茶'
+
 const lineList = [{
     id: '@890gbhyh',
     url: 'https://lin.ee/BDAt3fC',
@@ -165,10 +167,12 @@ const bubbleOffset = ref({ x: 0, y: 0 });
 
 <style scoped>
 /* 样式保持不变 */
-.ab-container,
+.ab-container{
+    max-width: 500px;
+    background: #f7f8fa;
+}
 .seatable-container {
     width: 100%;
-    background: #f7f8fa;
 }
 
 .a-image {

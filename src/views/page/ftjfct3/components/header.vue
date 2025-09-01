@@ -23,10 +23,9 @@
         <img src="@image/ftjfct3/22.jpg" />
         <img src="@image/ftjfct3/23.jpg" />
         <img src="@image/ftjfct3/24.jpg" />
-        <img src="@image/ftjfct3/25.jpg" />
+        <img src="@image/ftjfct3/25.png" />
         <img src="@image/ftjfct3/26.jpg" />
         <img src="@image/ftjfct3/27.jpg" />
-        <img src="@image/ftjfct3/28.jpg" />
     </div>
 </template>
 

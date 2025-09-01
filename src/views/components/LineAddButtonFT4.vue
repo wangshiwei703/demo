@@ -72,6 +72,7 @@ const generateEventId = () => {
 
 <style scoped lang="less">
 .line-add-container{
+  max-width: 500px;
   text-align: center;
   img {
     width: 100%;
