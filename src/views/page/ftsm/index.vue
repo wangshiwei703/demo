@@ -144,10 +144,12 @@ const bubbleOffset = ref({ x: 0, y: 0 });
 
 <style scoped>
 /* 样式保持不变 */
-.ab-container,
+.ab-container{
+    max-width: 500px;
+    background: #f7f8fa;
+}
 .seatable-container {
     width: 100%;
-    background: #f7f8fa;
 }
 
 .a-image {
