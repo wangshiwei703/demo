@@ -51,15 +51,6 @@ const routes = [
       keepAlive: true
     }
   },
-{
-    path: '/ftjfct2',
-    name: 'ftjfct2',
-    component: () => import('@/views/page/ftjfct2/index.vue'),
-    meta: {
-      requiresAuth: true,
-      keepAlive: true
-    }
-  },
   {
     path: '/ftjfct3',
     name: 'ftjfct3',
