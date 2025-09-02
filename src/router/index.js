@@ -8,12 +8,48 @@ import {
 const routes = [
   {
     path: '/',
-    redirect: '/jfcp',
+    name: 'backStage',
+    redirect: 'overview',
+    component: () => import('@/views/page/background/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    },
+    children: [{
+      path: 'overview',
+      name: 'overview',
+      component: () => import('@/views/page/background/container/overview/index.vue'),
+      meta: {
+        requiresAuth: true,
+        keepAlive: true
+      }
+    }, {
+      path: 'businessManage',
+      name: 'businessManage',
+      component: () => import('@/views/page/background/container/businessManage/index.vue'),
+      meta: {
+        requiresAuth: true,
+        keepAlive: true
+      },
+      children: [{
+        path: 'PMList',
+        name: 'PMList',
+        component: () => import('@/views/page/background/container/businessManage/PMList/index.vue'),
         meta: {
           requiresAuth: true,
           keepAlive: true
         }
-        },
+      }, {
+        path: 'PMGroupList',
+        name: 'PMGroupList',
+        component: () => import('@/views/page/background/container/businessManage/PMGroupList/index.vue'),
+        meta: {
+          requiresAuth: true,
+          keepAlive: true
+        }
+      }]
+    },]
+  },
 
   {
     path: '/jfcp',
@@ -64,6 +100,15 @@ const routes = [
     path: '/ftsm',
     name: 'ftsm',
     component: () => import('@/views/page/ftsm/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
+    path: '/ftsm2',
+    name: 'ftsm2',
+    component: () => import('@/views/page/ftsm2/index.vue'),
     meta: {
       requiresAuth: true,
       keepAlive: true

@@ -1,0 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; 
+  /* 让 body 继承 html 的高度 */
+  box-sizing: border-box; /* 避免边框/内边距影响高度计算 */
+}
+
+/* 全局盒模型重置（推荐） */
+* {
+  box-sizing: inherit;
+}
