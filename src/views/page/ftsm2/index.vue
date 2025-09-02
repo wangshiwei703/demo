@@ -2,7 +2,7 @@
     <div class="ab-container">
         <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
         <div v-if="showPageA" class="page-a" style="padding-bottom: 163px;">
-            <img src="@image/ftjfct3/25.png" class="a-image" style="width: 100%;height: 100%;" />
+            <img src="@image/smA.png" class="a-image" style="width: 100%;height: 100%;" />
         </div>
 
         <div v-else class="seatable-container" style="padding-bottom: 163px;">
