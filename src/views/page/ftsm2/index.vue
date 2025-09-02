@@ -167,6 +167,7 @@ const bubbleOffset = ref({ x: 0, y: 0 });
     bottom: 0px;
     z-index: 10;
     background-color: #fff;
+    width: 100%;
 }
 </style>
 
