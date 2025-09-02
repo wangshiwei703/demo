@@ -37,11 +37,8 @@ import ScrollButtons from '../../components/ScrollButtons.vue';
 import { useWindowSize } from '@vant/use';
 document.title = '科學助眠服務中心'
 const lineList = [{
-    id: '@890gbhyh',
-    url: 'https://lin.ee/BDAt3fC',
-}, {
     id: '@426qqpel',
-    url: 'https://lin.ee/Ul7ph3y'
+    url: 'https://lin.ee/ad7fSuH',
 }]
 
 // 随机选择一个企业微信账号
