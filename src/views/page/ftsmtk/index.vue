@@ -1,26 +1,15 @@
-<!-- fb投放 -->
+<!-- tk投放 -->
 <template>
     <div class="ab-container">
         <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
-        <!-- <div v-if="showPageA" class="page-a" style="padding-bottom: 163px;">
-            <img src="@image/ftjfcp-header.png" class="a-image" style="width: 100%;height: 100%;" />
-            <div class="bottom" style="display: flex;justify-content: space-around;">
-                <LineAddButton :lineList="lineList" />
-            </div>
-        </div> -->
+        <div v-if="showPageA" class="page-a" style="padding-bottom: 163px;">
+            <img src="@image/smA.png" class="a-image" style="width: 100%;height: 100%;" />
+        </div>
 
-        <div class="seatable-container" style="padding-bottom: 163px;">
+        <div v-else class="seatable-container" style="padding-bottom: 163px;">
             <div class="seatable-container-header">
                 <homeHeader></homeHeader>
             </div>
-
-            <!-- <ScrollButtons></ScrollButtons> -->
-
-            <!-- <van-floating-bubble v-model:offset="bubbleOffset" axis="y" icon="chat" magnetic="x" @click="handleAddLine">
-                <template #default>
-                    <img src="@image/linelogo.png" style="width: 35px;" />
-                </template>
-</van-floating-bubble> -->
         </div>
 
 
@@ -32,7 +21,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import LineAddButton from '../../components/LineAddButtonFT5.vue';
+import LineAddButton from '../../components/LineAddButtonFT6.vue';
 import homeHeader from './components/header.vue'
 import ScrollButtons from '../../components/ScrollButtons.vue';
 import { useWindowSize } from '@vant/use';
@@ -62,8 +51,19 @@ const handleAddLine = async () => {
 
 // 触发TikTok Pixel转化事件
 const triggerTikTokConversion = () => {
-    if (window.fbq) {
-        window.fbq('track', 'CompleteRegistration');
+    if (window.ttq) {
+        window.ttq.track('ClickButton', {
+            contents: [
+                {
+                    content_id: 'lineId',
+                    content_name: 'Line添加成功',
+                    content_type: 'line',
+                }],
+            value: 1,
+            currency: 'CNY'
+        }, {
+            event_id: generateEventId()
+        });
     }
 };
 
@@ -142,10 +142,11 @@ const bubbleOffset = ref({ x: 0, y: 0 });
 
 <style scoped>
 /* 样式保持不变 */
-.ab-container{
+.ab-container {
     max-width: 500px;
     background: #f7f8fa;
 }
+
 .seatable-container {
     width: 100%;
 }
@@ -162,11 +163,13 @@ const bubbleOffset = ref({ x: 0, y: 0 });
     /* 某些浏览器会给图片加默认边框 */
 }
 
-.bottom{
+.bottom {
     position: fixed;
-    bottom: 0px;
+    bottom: -5px;
+    left: 0px;
     z-index: 10;
-    background-color: #fff;
+    /* background-color: #fff; */
+    width: 100%;
 }
 </style>
 

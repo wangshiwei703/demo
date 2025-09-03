@@ -115,6 +115,15 @@ const routes = [
     }
   },
   {
+    path: '/ftsmtk',
+    name: 'ftsmtk',
+    component: () => import('@/views/page/ftsmtk/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
     path: '/zyys',
     name: 'zyys',
     component: () => import('@/views/page/zyys/index.vue'),
