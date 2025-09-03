@@ -14,6 +14,6 @@ import { RouterView } from 'vue-router'
   height: 100%;
   display: flex;
   justify-content: center;
-  background: url('@image/bgShopping.jpg') center center repeat;
+  background: #c9c9c9;
 }
 </style>
