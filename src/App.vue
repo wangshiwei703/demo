@@ -9,11 +9,14 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-.vite-vue3-template-app{
+.vite-vue3-template-app {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  background: #c9c9c9;
+  background-image: radial-gradient(circle, #165f2b 1px, #0000 1px);
+  background-size: 20px 20px;
+
+  /* overflow: hidden; */
 }
 </style>

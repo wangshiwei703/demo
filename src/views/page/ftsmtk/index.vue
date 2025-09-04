@@ -145,6 +145,10 @@ const bubbleOffset = ref({ x: 0, y: 0 });
 .ab-container {
     max-width: 500px;
     background: #f7f8fa;
+
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .seatable-container {

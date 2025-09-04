@@ -1,16 +1,15 @@
 <template>
     <div class="homg-header1">
-        <img src="@image/ftsm/1.jpg" />
-        <img src="@image/ftsm/2.jpg" />
-        <img src="@image/ftsm/4.jpg" />
-        <img src="@image/ftsm/5.jpg" />
-        <img src="@image/ftsm/6.jpg" />
-        <img src="@image/ftsm/7.jpg" />
-        <img src="@image/ftsm/8.jpg" />
-        <img src="@image/ftsm/9.jpg" />
-        <img src="@image/ftsm/10.jpg" />
-        <img src="@image/ftsm/11.jpg" />
-        <img src="@image/ftsm/12.jpg" />
+        <img src="@image/ftsmtk/1.jpg" />
+        <img src="@image/ftsmtk/2.jpg" />
+        <img src="@image/ftsmtk/4.jpg" />
+        <img src="@image/ftsmtk/5.jpg" />
+        <img src="@image/ftsmtk/6.jpg" />
+        <img src="@image/ftsmtk/7.jpg" />
+        <img src="@image/ftsmtk/8.jpg" />
+        <img src="@image/ftsmtk/9.jpg" />
+        <img src="@image/ftsmtk/10.jpg" />
+        <img src="@image/ftsmtk/11.jpg" />
     </div>
 </template>
 
