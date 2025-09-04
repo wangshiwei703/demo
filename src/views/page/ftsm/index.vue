@@ -9,12 +9,11 @@
             <div class="seatable-container-header">
                 <homeHeader></homeHeader>
             </div>
+
+            <div class="bottom" style="display: flex;justify-content: space-around;">
+                <LineAddButton :lineList="lineList" />
+            </div>
         </div>
-
-
-        <!-- <div class="bottom" style="display: flex;justify-content: space-around;">
-            <LineAddButton :lineList="lineList" />
-        </div> -->
     </div>
 </template>
 
@@ -58,20 +57,21 @@ const triggerTikTokConversion = () => {
 const showPageA = ref(true);
 
 
-// onMounted(async () => {
-//   try {
-//     // 调用第三方 IP 信息接口（无需 API 密钥）
-//     const response = await axios('https://ipapi.co/json/');
-//     let data = response.data
-//     console.log(response.data);
+onMounted(async () => {
+    try {
+        // 调用第三方 IP 信息接口（无需 API 密钥）
+        // https://ipapi.co/json/
+        const response = await axios('https://ipinfo.io/json');
+        console.log(response);
+        let data = response.data
 
-//     if(data.country_name == 'Taiwan'){
-//         showPageA.value = false
-//     }
-//   } catch (error) {
-//     console.error('获取国家信息失败：', error);
-//   }
-// });
+        if (data.country == 'JP') {
+            showPageA.value = false
+        }
+    } catch (error) {
+        console.error('获取国家信息失败：', error);
+    }
+});
 </script>
 
 <style scoped>
