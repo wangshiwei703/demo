@@ -12,9 +12,9 @@
         </div>
 
 
-        <div class="bottom" style="display: flex;justify-content: space-around;">
+        <!-- <div class="bottom" style="display: flex;justify-content: space-around;">
             <LineAddButton :lineList="lineList" />
-        </div>
+        </div> -->
     </div>
 </template>
 
