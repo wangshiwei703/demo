@@ -50,7 +50,15 @@ const routes = [
       }]
     },]
   },
-
+{
+    path: '/root',
+    name: 'root',
+    component: () => import('@/views/root.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
   {
     path: '/jfcp',
     name: 'jfcp',

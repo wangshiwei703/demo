@@ -1,103 +1,68 @@
 <template>
-
-  <div class="ab-container">
-    <!-- A页：审核人员及非TikTok用户可见（完全合规内容） -->
-    <div v-if="showPageA" class="page-a">
-      <h2>合规产品介绍</h2>
-      <p>符合平台政策的产品说明、资质证明、正规服务流程...</p>
-      <div class="compliance-info">
-        <p>资质编号：XXX-XXXX-XXXX</p>
-        <p>服务条款：[链接至合规条款]</p>
-      </div>
-    </div>
-
-    <!-- B页：真实TikTok用户可见（定制化内容） -->
-    <div v-else class="page-b">
-      <div class="vite-vue3-template-root">
-        <div class="header">
-          <homeHeader></homeHeader>
-        </div>
-        <div class="main">
-          <replyDialog @addButton="handelAddButton"></replyDialog>
-        </div>
-        <div class="bottom" v-if="addButtonShow">
-          <SimpleWecomRedirect />
-          <LineAddButton />
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <m-editor v-model="dsl" :menu="menu" :runtime-url="runtimeUrl" :props-configs="propsConfigs"
+    :props-values="propsValues" :component-group-list="componentGroupList">
+  </m-editor>
 </template>
 
+<script>
+import { defineComponent, ref } from "vue";
 
-<script setup>
-import SimpleWecomRedirect from './components/SimpleWecomRedirect.vue';
-import LineAddButton from './components/LineAddButton.vue';
-import homeHeader from './home/header.vue';
-import replyDialog from "./home/replyDialog.vue";
-import { ref, onMounted } from "vue";
+export default defineComponent({
+  name: "App",
 
-const addButtonShow = ref(false)
+  setup() {
+    return {
+      menu: ref({
+        left: [
+          //顶部左侧菜单按钮
+        ],
+        center: [
+          //顶部中间菜单按钮
+        ],
+        right: [
+          //顶部右侧菜单按钮
+        ],
+      }),
 
-const handelAddButton = () => {
-  addButtonShow.value = true
-}
+      dsl: ref({
+        //初始化页面数据
+      }),
 
+      runtimeUrl: "/runtime/vue3/playground/index.html",
 
-const showPageA = ref(true); // 默认展示A页（审核安全）
+      propsConfigs: [
+        //组件属性列表
+      ],
+      propsValues: [
+        //组件默认值
+      ],
 
-onMounted(() => {
-  // 延迟检测，确保TikTok环境变量加载完成
-  const timer = setTimeout(() => {
-    // 直接判断是否来自TikTok相关场景
-    const isFromTikTok = checkTikTokSource();
-    showPageA.value = !isFromTikTok;
-    clearTimeout(timer);
-
-  }, 500);
+      componentGroupList: ref([
+        //组件列表
+      ]),
+    };
+  },
 });
-
-// 核心判断逻辑：直接检测来源
-function checkTikTokSource() {
-  // 1. 检测是否在TikTok内置浏览器中（不跳转场景）
-  const userAgent = window.navigator.userAgent.toLowerCase();
-  const isTikTokWebView = userAgent.includes('tiktok') || userAgent.includes('tiktoklite');
-
-  // 2. 检测是否从TikTok跳转而来（广告跳转场景）
-  // referrer会包含跳转前的页面URL，TikTok广告跳转可能包含其域名
-  const referrer = document.referrer.toLowerCase();
-  const isFromTikTokReferrer = referrer.includes('tiktok.com') ||
-    referrer.includes('tiktokcdn.com') ||
-    referrer.includes('toutiao.com'); // 字节系相关域名
-
-  // 3. 综合判断：满足任一条件即视为来自TikTok
-  const result = isTikTokWebView || isFromTikTokReferrer;
-
-  // 输出判断依据（开发调试用）
-  console.log('来源判断依据：', {
-    userAgent,
-    isTikTokWebView,
-    referrer,
-    isFromTikTokReferrer,
-    finalResult: result
-  });
-
-  return result;
-}
-
 </script>
 
-<style scoped lang="less">
-.vite-vue3-template-root {
+<style lang="less">
+html,
+body {
   width: 100%;
-  min-height: 100%;
-  background-color: #f5f5f5;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
-  .bottom {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 30px;
-  }
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.m-editor {
+  flex: 1;
+  height: 100%;
 }
 </style>

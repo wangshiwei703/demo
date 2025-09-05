@@ -39,11 +39,17 @@ import { useWindowSize } from '@vant/use';
 document.title = '减肥茶'
 
 const lineList = [{
-    id: '@890gbhyh',
-    url: 'https://lin.ee/BDAt3fC',
-}, {
     id: '@426qqpel',
-    url: 'https://lin.ee/Ul7ph3y'
+    url: 'https://lin.ee/ad7fSuH',
+}, {
+    id: '@890gbhyh',
+    url: 'https://lin.ee/BDAt3fC'
+}, {
+    id: '@335ylgrq',
+    url: 'https://lin.ee/IeZ18qF'
+}, {
+    id: '@722yvubn',
+    url: 'https://lin.ee/NSB4FIs'
 }]
 
 // 随机选择一个企业微信账号
