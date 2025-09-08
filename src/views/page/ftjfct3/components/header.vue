@@ -7,7 +7,7 @@
         <img src="@image/ftjfct3/6.jpg" />
         <img src="@image/ftjfct3/7.jpg" />
         <img src="@image/ftjfct3/8.jpg" />
-        <img src="@image/ftjfct3/9.gif" />
+        <img src="@image/ftjfct3/9.jpg" />
         <img src="@image/ftjfct3/10.jpg" />
         <img src="@image/ftjfct3/11.jpg" />
         <img src="@image/ftjfct3/12.jpg" />
@@ -23,7 +23,7 @@
         <img src="@image/ftjfct3/22.jpg" />
         <img src="@image/ftjfct3/23.jpg" />
         <img src="@image/ftjfct3/24.jpg" />
-        <img src="@image/ftjfct3/25.png" />
+        <img src="@image/ftjfct3/25.jpg" />
         <img src="@image/ftjfct3/26.jpg" />
         <img src="@image/ftjfct3/27.jpg" />
     </div>
