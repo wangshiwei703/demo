@@ -14,8 +14,8 @@ import { RouterView } from 'vue-router'
   height: 100%;
   display: flex;
   justify-content: center;
-  background-image: radial-gradient(circle, #165f2b 1px, #0000 1px);
-  background-size: 20px 20px;
+  /* background-image: radial-gradient(circle, #165f2b 1px, #0000 1px); */
+  /* background-size: 20px 20px; */
 
   /* overflow: hidden; */
 }
