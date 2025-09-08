@@ -194,6 +194,8 @@ const bubbleOffset = ref({ x: 0, y: 0 });
 }
 
 .bottom{
+    max-width: 500px;
+    width: 100%;
     position: fixed;
     bottom: 0px;
     z-index: 10;
