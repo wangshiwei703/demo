@@ -105,6 +105,15 @@ const routes = [
     }
   },
   {
+    path: '/ftjfct4',
+    name: 'ftjfct4',
+    component: () => import('@/views/page/ftjfct4/index.vue'),
+    meta: {
+      requiresAuth: true,
+      keepAlive: true
+    }
+  },
+  {
     path: '/ftsm',
     name: 'ftsm',
     component: () => import('@/views/page/ftsm/index.vue'),
